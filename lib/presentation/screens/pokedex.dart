@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 
-import 'package:pokedex/presentation/screens/widgets/pokemon_tile.dart';
+import 'package:pokedex/presentation/widgets/pokemon_tile.dart';
 
 class Pokedex extends StatelessWidget {
   Pokedex({super.key});
@@ -36,9 +36,8 @@ class Pokedex extends StatelessWidget {
     return Scaffold(
       body: ListView.builder(
         itemCount: pokemonNames.length,
-        itemBuilder:
-            (BuildContext context, int index) =>
-                PokemonTile(pokemon: pokemonNames[index]),
+        itemBuilder: (BuildContext context, int index) =>
+            PokemonTile(pokemon: pokemonNames[index]),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon_info.dart';
-import 'package:pokedex/presentation/screens/widgets/custom_ellipse.dart';
-import 'package:pokedex/presentation/screens/widgets/label_value.dart';
+import 'package:pokedex/presentation/widgets/custom_ellipse.dart';
+import 'package:pokedex/presentation/widgets/label_value.dart';
 
 class PokemonInformation extends StatelessWidget {
   const PokemonInformation({required this.pokemonInfo, super.key});
@@ -27,7 +27,7 @@ class PokemonInformation extends StatelessWidget {
                     width: double.infinity,
                     child: CustomPaint(painter: CustomEllipse()),
                   ),
-                  Image.asset('assets/grass.png'),
+                  Image.asset('assets/large_icons/grass.png'),
                 ],
               ),
             ),

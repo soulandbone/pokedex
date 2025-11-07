@@ -1,9 +1,18 @@
+import 'package:pokedex/data/datasources/pokemon_api_client.dart';
+import 'package:pokedex/domain/entities/pokemon.dart';
 import 'package:pokedex/domain/pokemon_repository.dart';
-import 'package:pokedex/models/pokemon_model.dart';
 
 class PokemonRepositoryImpl implements PokemonRepository {
-  @override
-  Future<List<PokemonModel>> fetchPokemons() async {}
+  PokemonRepositoryImpl(this.apiClient);
 
-//TODO: Agregar la implementacion concreta.
+  final PokemonApiClient apiClient;
+
+  @override
+  Future<List<Pokemon>> fetchPokemons() async {
+    final results = await apiClient.fetchPokemons();
+
+    return results.map((json) {
+      return Pokemon.fromJson(json);
+    }).toList();
+  }
 }

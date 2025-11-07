@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/constants/app_strings.dart';
 import 'package:pokedex/presentation/screens/favoritos.dart';
+import 'package:pokedex/presentation/screens/modals/filters_modal.dart';
 import 'package:pokedex/presentation/screens/perfil.dart';
 import 'package:pokedex/presentation/screens/pokedex.dart';
 import 'package:pokedex/presentation/screens/regiones.dart';
@@ -26,11 +27,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppStrings.kTitle)),
+      appBar: AppBar(
+        title: Text(AppStrings.kTitle),
+        actions: [
+          IconButton(
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context, builder: (context) => FiltersModal());
+              },
+              icon: Icon(Icons.plus_one))
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blue,
-
         currentIndex: _selectedIndex,
         onTap: onSelection,
         items: [

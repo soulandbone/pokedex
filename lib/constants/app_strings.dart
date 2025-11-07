@@ -9,6 +9,8 @@ class AppStrings {
   static const kPerfilTab = 'Perfil';
   static const kContinuar = 'Continuar';
   static const kEmpecemos = 'Empecemos';
+  static const kFiltraPorPrefs = 'Filtra por tus preferencias';
+  static const kTipo = 'Tipo';
 
 //***************************TIPOS*********************************** */
   static const kAcero = 'Acero';

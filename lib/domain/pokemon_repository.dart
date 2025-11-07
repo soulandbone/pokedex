@@ -1,5 +1,5 @@
-import 'package:pokedex/models/pokemon_model.dart';
+import 'package:pokedex/domain/entities/pokemon.dart';
 
 abstract class PokemonRepository {
-  Future<List<PokemonModel>> fetchPokemons();
+  Future<List<Pokemon>> fetchPokemons();
 }
