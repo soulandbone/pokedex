@@ -20,6 +20,7 @@ Pokemon _$PokemonFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Pokemon {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
 
@@ -37,7 +38,7 @@ abstract class $PokemonCopyWith<$Res> {
   factory $PokemonCopyWith(Pokemon value, $Res Function(Pokemon) then) =
       _$PokemonCopyWithImpl<$Res, Pokemon>;
   @useResult
-  $Res call({String name, String url});
+  $Res call({String id, String name, String url});
 }
 
 /// @nodoc
@@ -55,10 +56,15 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? url = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -78,7 +84,7 @@ abstract class _$$PokemonImplCopyWith<$Res> implements $PokemonCopyWith<$Res> {
       __$$PokemonImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String url});
+  $Res call({String id, String name, String url});
 }
 
 /// @nodoc
@@ -94,10 +100,15 @@ class __$$PokemonImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? url = null,
   }) {
     return _then(_$PokemonImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -113,11 +124,14 @@ class __$$PokemonImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PokemonImpl implements _Pokemon {
-  const _$PokemonImpl({required this.name, required this.url});
+  const _$PokemonImpl(
+      {required this.id, required this.name, required this.url});
 
   factory _$PokemonImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonImplFromJson(json);
 
+  @override
+  final String id;
   @override
   final String name;
   @override
@@ -125,7 +139,7 @@ class _$PokemonImpl implements _Pokemon {
 
   @override
   String toString() {
-    return 'Pokemon(name: $name, url: $url)';
+    return 'Pokemon(id: $id, name: $name, url: $url)';
   }
 
   @override
@@ -133,13 +147,14 @@ class _$PokemonImpl implements _Pokemon {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PokemonImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, url);
+  int get hashCode => Object.hash(runtimeType, id, name, url);
 
   /// Create a copy of Pokemon
   /// with the given fields replaced by the non-null parameter values.
@@ -159,10 +174,14 @@ class _$PokemonImpl implements _Pokemon {
 
 abstract class _Pokemon implements Pokemon {
   const factory _Pokemon(
-      {required final String name, required final String url}) = _$PokemonImpl;
+      {required final String id,
+      required final String name,
+      required final String url}) = _$PokemonImpl;
 
   factory _Pokemon.fromJson(Map<String, dynamic> json) = _$PokemonImpl.fromJson;
 
+  @override
+  String get id;
   @override
   String get name;
   @override

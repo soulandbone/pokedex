@@ -46,7 +46,7 @@ class PokemonTile extends ConsumerWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(details.weight.toString()),
+                              Text(pokemon.id.toString()),
                               Text(
                                 capitalizer(pokemon.name),
                                 style: TextStyle(
