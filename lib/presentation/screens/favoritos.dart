@@ -6,7 +6,6 @@ class Favoritos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Este es el favoritos')),
       body: Center(child: Text('Este es el favoritos')),
     );
   }

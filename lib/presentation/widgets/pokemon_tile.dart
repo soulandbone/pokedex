@@ -4,6 +4,7 @@ import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/domain/entities/pokemon/pokemon.dart';
 import 'package:pokedex/helpers/capitalizer.dart';
 import 'package:pokedex/helpers/string_to_icon_mapper.dart';
+import 'package:pokedex/providers/favorites.dart';
 import 'package:pokedex/providers/providers.dart';
 
 class PokemonTile extends ConsumerWidget {
@@ -14,7 +15,10 @@ class PokemonTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final detailsAsync = ref.watch(fetchPokemonDetailsProvider(pokemon.url));
-    print('Details Async: $detailsAsync');
+
+    final isFav = ref.watch(favoritesProvider).contains(pokemon.id);
+
+    // print('Details Async: $detailsAsync');
 
     return detailsAsync.when(
         data: (details) => Dismissible(
@@ -79,10 +83,18 @@ class PokemonTile extends ConsumerWidget {
                               AppMaps.typeIconMapLarge[details.types[0]]!,
                               Image.network(details.frontDefault),
                               Positioned(
-                                right: 5,
-                                top: 10,
-                                child: Icon(Icons.favorite_border_outlined),
-                              ),
+                                  right: 5,
+                                  top: 10,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      ref
+                                          .read(favoritesProvider.notifier)
+                                          .toggle(pokemon.id);
+                                    },
+                                    child: Icon(isFav
+                                        ? Icons.favorite
+                                        : Icons.favorite_border_outlined),
+                                  )),
                             ],
                           ),
                         ),
