@@ -22,6 +22,7 @@ PokemonTileData _$PokemonTileDataFromJson(Map<String, dynamic> json) {
 mixin _$PokemonTileData {
   String get frontDefault => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
+  List<String> get types => throw _privateConstructorUsedError;
 
   /// Serializes this PokemonTileData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +40,7 @@ abstract class $PokemonTileDataCopyWith<$Res> {
           PokemonTileData value, $Res Function(PokemonTileData) then) =
       _$PokemonTileDataCopyWithImpl<$Res, PokemonTileData>;
   @useResult
-  $Res call({String frontDefault, int weight});
+  $Res call({String frontDefault, int weight, List<String> types});
 }
 
 /// @nodoc
@@ -59,6 +60,7 @@ class _$PokemonTileDataCopyWithImpl<$Res, $Val extends PokemonTileData>
   $Res call({
     Object? frontDefault = null,
     Object? weight = null,
+    Object? types = null,
   }) {
     return _then(_value.copyWith(
       frontDefault: null == frontDefault
@@ -69,6 +71,10 @@ class _$PokemonTileDataCopyWithImpl<$Res, $Val extends PokemonTileData>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int,
+      types: null == types
+          ? _value.types
+          : types // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$PokemonTileDataImplCopyWith<$Res>
       __$$PokemonTileDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String frontDefault, int weight});
+  $Res call({String frontDefault, int weight, List<String> types});
 }
 
 /// @nodoc
@@ -99,6 +105,7 @@ class __$$PokemonTileDataImplCopyWithImpl<$Res>
   $Res call({
     Object? frontDefault = null,
     Object? weight = null,
+    Object? types = null,
   }) {
     return _then(_$PokemonTileDataImpl(
       frontDefault: null == frontDefault
@@ -109,6 +116,10 @@ class __$$PokemonTileDataImplCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as int,
+      types: null == types
+          ? _value._types
+          : types // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -118,7 +129,10 @@ class __$$PokemonTileDataImplCopyWithImpl<$Res>
 @JsonSerializable(createToJson: true)
 class _$PokemonTileDataImpl implements _PokemonTileData {
   const _$PokemonTileDataImpl(
-      {required this.frontDefault, required this.weight});
+      {required this.frontDefault,
+      required this.weight,
+      required final List<String> types})
+      : _types = types;
 
   factory _$PokemonTileDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonTileDataImplFromJson(json);
@@ -127,10 +141,17 @@ class _$PokemonTileDataImpl implements _PokemonTileData {
   final String frontDefault;
   @override
   final int weight;
+  final List<String> _types;
+  @override
+  List<String> get types {
+    if (_types is EqualUnmodifiableListView) return _types;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_types);
+  }
 
   @override
   String toString() {
-    return 'PokemonTileData(frontDefault: $frontDefault, weight: $weight)';
+    return 'PokemonTileData(frontDefault: $frontDefault, weight: $weight, types: $types)';
   }
 
   @override
@@ -140,12 +161,14 @@ class _$PokemonTileDataImpl implements _PokemonTileData {
             other is _$PokemonTileDataImpl &&
             (identical(other.frontDefault, frontDefault) ||
                 other.frontDefault == frontDefault) &&
-            (identical(other.weight, weight) || other.weight == weight));
+            (identical(other.weight, weight) || other.weight == weight) &&
+            const DeepCollectionEquality().equals(other._types, _types));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, frontDefault, weight);
+  int get hashCode => Object.hash(runtimeType, frontDefault, weight,
+      const DeepCollectionEquality().hash(_types));
 
   /// Create a copy of PokemonTileData
   /// with the given fields replaced by the non-null parameter values.
@@ -167,7 +190,8 @@ class _$PokemonTileDataImpl implements _PokemonTileData {
 abstract class _PokemonTileData implements PokemonTileData {
   const factory _PokemonTileData(
       {required final String frontDefault,
-      required final int weight}) = _$PokemonTileDataImpl;
+      required final int weight,
+      required final List<String> types}) = _$PokemonTileDataImpl;
 
   factory _PokemonTileData.fromJson(Map<String, dynamic> json) =
       _$PokemonTileDataImpl.fromJson;
@@ -176,6 +200,8 @@ abstract class _PokemonTileData implements PokemonTileData {
   String get frontDefault;
   @override
   int get weight;
+  @override
+  List<String> get types;
 
   /// Create a copy of PokemonTileData
   /// with the given fields replaced by the non-null parameter values.

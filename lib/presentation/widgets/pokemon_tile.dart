@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/domain/entities/pokemon/pokemon.dart';
+import 'package:pokedex/helpers/string_to_icon_mapper.dart';
 import 'package:pokedex/providers/providers.dart';
 
 class PokemonTile extends ConsumerWidget {
@@ -54,9 +55,9 @@ class PokemonTile extends ConsumerWidget {
                               SizedBox(
                                 height: 40,
                                 child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [Text('Planta'), Text('Veneno')],
-                                ),
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: mapStringToIcons(details.types)),
                               ),
                             ],
                           ),

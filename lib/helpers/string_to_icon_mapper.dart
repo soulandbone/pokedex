@@ -1,0 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:pokedex/constants/app_maps.dart';
+
+List<Widget> mapStringToIcons(List<String> types) {
+  return types.map((type) => AppMaps.typeIconMap[type]!).toList();
+}

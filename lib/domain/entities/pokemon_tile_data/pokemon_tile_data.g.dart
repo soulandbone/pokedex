@@ -11,6 +11,7 @@ _$PokemonTileDataImpl _$$PokemonTileDataImplFromJson(
     _$PokemonTileDataImpl(
       frontDefault: json['frontDefault'] as String,
       weight: (json['weight'] as num).toInt(),
+      types: (json['types'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$PokemonTileDataImplToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$PokemonTileDataImplToJson(
     <String, dynamic>{
       'frontDefault': instance.frontDefault,
       'weight': instance.weight,
+      'types': instance.types,
     };
