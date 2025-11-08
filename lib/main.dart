@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/models/pokemon_info.dart';
+import 'package:pokedex/presentation/screens/home_page.dart';
 
 import 'package:pokedex/presentation/widgets/pokemon_information.dart';
 
@@ -25,17 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: PokemonInformation(
-          pokemonInfo: PokemonInfo(
-              name: 'Bulbasaur',
-              description: 'This is the short description about the Pokemon',
-              id: 1,
-              weight: 69,
-              height: 7,
-              category: 'Planta',
-              skill: 'Germinar',
-              gender: 2,
-              weaknesses: ['Veneno'])),
+      home: HomePage(),
     );
   }
 }

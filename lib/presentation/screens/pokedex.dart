@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 
 import 'package:pokedex/presentation/widgets/pokemon_tile.dart';
+import 'package:pokedex/providers/providers.dart';
 
-class Pokedex extends StatelessWidget {
+class Pokedex extends ConsumerWidget {
   Pokedex({super.key});
 
   List<PokemonModel> pokemonNames = [
@@ -32,13 +34,19 @@ class Pokedex extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final pokemonAsyncValue = ref.watch(pokemonListProvider);
+
     return Scaffold(
-      body: ListView.builder(
-        itemCount: pokemonNames.length,
-        itemBuilder: (BuildContext context, int index) =>
-            PokemonTile(pokemon: pokemonNames[index]),
+        body: pokemonAsyncValue.when(
+      data: (pokemons) => ListView.builder(
+        itemCount: pokemons.length,
+        itemBuilder: (context, index) => PokemonTile(
+          pokemon: pokemons[index],
+        ),
       ),
-    );
+      loading: () => CircularProgressIndicator(),
+      error: (err, stack) => Text('Error: $err'),
+    ));
   }
 }

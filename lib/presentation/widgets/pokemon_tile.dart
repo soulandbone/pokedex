@@ -1,113 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/models/pokemon_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/domain/entities/pokemon.dart';
+import 'package:pokedex/providers/providers.dart';
 
-class PokemonTile extends StatefulWidget {
+class PokemonTile extends ConsumerWidget {
   const PokemonTile({required this.pokemon, super.key});
 
-  final PokemonModel pokemon;
+  final Pokemon pokemon;
 
   @override
-  State<PokemonTile> createState() => _PokemonTileState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final detailsAsync = ref.watch(fetchPokemonDetailsProvider(pokemon.url));
 
-class _PokemonTileState extends State<PokemonTile> {
-  bool _isPressed = false;
-
-  void toggleFav() {
-    setState(() {
-      _isPressed = !_isPressed;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Dismissible(
-      key: ValueKey(widget.pokemon.id),
-      child: Container(
-        decoration: BoxDecoration(
-          color: widget.pokemon.color,
-
-          borderRadius: BorderRadius.circular(12),
-        ),
-        margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
-        height: 102,
-
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 3,
+    return detailsAsync.when(
+        data: (details) => Dismissible(
+              key: ValueKey(pokemon.name),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    bottomLeft: Radius.circular(12),
-                  ),
-                ),
-
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('N° ${widget.pokemon.id.toString()}'),
-                      Text(
-                        widget.pokemon.name,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: widget.pokemon.tipos,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-
-            Expanded(
-              flex: 2,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.pink,
+                  color: Colors.amber,
                   borderRadius: BorderRadius.circular(12),
                 ),
-
-                child: Stack(
+                margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
+                height: 102,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      widget.pokemon.backgroundIcon,
-                      fit: BoxFit.fitHeight,
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            bottomLeft: Radius.circular(12),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(details['weight'].toString()),
+                              Text(
+                                pokemon.name,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 40,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [Text('Planta'), Text('Veneno')],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-
-                    Image.asset(widget.pokemon.spriteUrl),
-                    Positioned(
-                      right: 10,
-                      top: 10,
-                      child: GestureDetector(
-                        onTap: toggleFav,
-                        child:
-                            _isPressed
-                                ? Icon(Icons.favorite)
-                                : Icon(Icons.favorite_border_outlined),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.pink,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Stack(
+                          children: [
+                            Image.asset(
+                              'assets/large_icons/grass.png',
+                              fit: BoxFit.fitHeight,
+                            ),
+                            Image.asset('assets/bulbasaur_sprite.png'),
+                            Positioned(
+                              right: 10,
+                              top: 10,
+                              child: Icon(Icons.favorite_border_outlined),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-    );
+        error: (err, _) => Text('whatever'),
+        loading: () => Text('Test'));
   }
 }

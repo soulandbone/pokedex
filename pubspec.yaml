@@ -73,6 +73,7 @@ flutter:
   assets:
     - assets/large_icons/
     - assets/small_icons/
+    - assets/
 
   #   - images/a_dot_ham.jpeg
 

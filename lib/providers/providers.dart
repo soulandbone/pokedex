@@ -29,3 +29,10 @@ Future<List<Pokemon>> pokemonList(PokemonListRef ref) async {
   final repository = ref.watch(pokemonRepositoryProvider);
   return repository.fetchPokemons();
 }
+
+@riverpod
+Future<Map<String, dynamic>> fetchPokemonDetails(
+    FetchPokemonDetailsRef ref, String url) async {
+  final response = await ref.read(dioProvider).get(url);
+  return response.data;
+}
