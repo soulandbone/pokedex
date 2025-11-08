@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/domain/entities/pokemon/pokemon.dart';
 import 'package:pokedex/helpers/string_to_icon_mapper.dart';
 import 'package:pokedex/providers/providers.dart';
@@ -71,19 +72,18 @@ class PokemonTile extends ConsumerWidget {
                           color: Colors.pink,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Stack(
-                          children: [
-                            Image.asset(
-                              'assets/large_icons/grass.png',
-                              fit: BoxFit.fitHeight,
-                            ),
-                            Image.network(details.frontDefault),
-                            Positioned(
-                              right: 10,
-                              top: 10,
-                              child: Icon(Icons.favorite_border_outlined),
-                            ),
-                          ],
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              AppMaps.typeIconMapLarge[details.types[0]]!,
+                              Image.network(details.frontDefault),
+                              Positioned(
+                                right: 0,
+                                top: 10,
+                                child: Icon(Icons.favorite_border_outlined),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
