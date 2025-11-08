@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/domain/entities/pokemon/pokemon.dart';
+import 'package:pokedex/helpers/capitalizer.dart';
 import 'package:pokedex/helpers/string_to_icon_mapper.dart';
 import 'package:pokedex/providers/providers.dart';
 
@@ -47,7 +48,7 @@ class PokemonTile extends ConsumerWidget {
                             children: [
                               Text(details.weight.toString()),
                               Text(
-                                pokemon.name,
+                                capitalizer(pokemon.name),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 22,
@@ -78,7 +79,7 @@ class PokemonTile extends ConsumerWidget {
                               AppMaps.typeIconMapLarge[details.types[0]]!,
                               Image.network(details.frontDefault),
                               Positioned(
-                                right: 0,
+                                right: 5,
                                 top: 10,
                                 child: Icon(Icons.favorite_border_outlined),
                               ),
