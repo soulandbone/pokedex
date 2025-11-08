@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/constants/app_colors.dart';
 
 double width = 70;
 double height = 70;
@@ -156,24 +157,45 @@ class AppMaps {
     )
   };
 
-  // static Map<String, Color> typeColorMap = {
-  //   'grass': Color()// example icon
-  //   'bug': Color(),
-  //   'normal': Color(),
-  //   'flying': Color(),
-  //   'poison':Color(),
-  //   'fire': Color(),
-  //   'water': Color(),
-  //   'electric': Color(),
-  //   'ground': Color(),
-  //   'fairy': Color(),
-  //   'fighting': Color(),
-  //   'psychic': Color(),
-  //   'rock': Color(),
-  //   'steel': Color(),
-  //   'ice': Color(),
-  //   'ghost': Color(),
-  //   'dragon': Color(),
-  //   'dark': Color()
-  // };
+  static Map<String, Color> typeColorMap = {
+    'grass': AppColors.kGrassSolid,
+    'bug': AppColors.kBugSolid,
+    'normal': AppColors.kGrassSolid,
+    'flying': AppColors.kFlyingSolid,
+    'poison': AppColors.kPoisonSolid,
+    'fire': AppColors.kFireSolid,
+    'water': AppColors.kWaterSolid,
+    'electric': AppColors.kElectricSolid,
+    'ground': AppColors.kElectricSolid,
+    'fairy': AppColors.kFairySolid,
+    'fighting': AppColors.kFightingSolid,
+    'psychic': AppColors.kPsychicSolid,
+    'rock': AppColors.kRockSolid,
+    'steel': AppColors.kGrassSolid,
+    'ice': AppColors.kIceSolid,
+    'ghost': AppColors.kGhostSolid,
+    'dragon': AppColors.kDragonSolid,
+    'dark': AppColors.kGrassSolid,
+  };
+
+  static Map<String, Color> typeTransparentColorMap = {
+    'grass': AppColors.kGrassTransparent,
+    'bug': AppColors.kBugTransparent,
+    'normal': AppColors.kGrassTransparent,
+    'flying': AppColors.kFlyingTransparent,
+    'poison': AppColors.kPoisonTransparent,
+    'fire': AppColors.kFireTransparent,
+    'water': AppColors.kWaterTransparent,
+    'electric': AppColors.kElectricTransparent,
+    'ground': AppColors.kElectricTransparent,
+    'fairy': AppColors.kFairyTransparent,
+    'fighting': AppColors.kFightingTransparent,
+    'psychic': AppColors.kPsychicTransparent,
+    'rock': AppColors.kRockTransparent,
+    'steel': AppColors.kGrassTransparent,
+    'ice': AppColors.kIceTransparent,
+    'ghost': AppColors.kGhostTransparent,
+    'dragon': AppColors.kDragonTransparent,
+    'dark': AppColors.kGrassTransparent,
+  };
 }

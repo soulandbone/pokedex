@@ -21,7 +21,7 @@ class PokemonTile extends ConsumerWidget {
               key: ValueKey(pokemon.name),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.amber,
+                  color: AppMaps.typeTransparentColorMap[details.types[0]],
                   borderRadius: BorderRadius.circular(12),
                 ),
                 margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
@@ -70,7 +70,7 @@ class PokemonTile extends ConsumerWidget {
                       flex: 2,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.pink,
+                          color: AppMaps.typeColorMap[details.types[0]],
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Center(
