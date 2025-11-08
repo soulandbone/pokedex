@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/domain/entities/pokemon.dart';
+import 'package:pokedex/domain/entities/pokemon/pokemon.dart';
 import 'package:pokedex/providers/providers.dart';
 
 class PokemonTile extends ConsumerWidget {
@@ -42,7 +42,7 @@ class PokemonTile extends ConsumerWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(details['weight'].toString()),
+                              Text(details.weight.toString()),
                               Text(
                                 pokemon.name,
                                 style: TextStyle(

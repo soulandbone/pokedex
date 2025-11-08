@@ -1,5 +1,5 @@
 import 'package:pokedex/data/datasources/pokemon_api_client.dart';
-import 'package:pokedex/domain/entities/pokemon.dart';
+import 'package:pokedex/domain/entities/pokemon/pokemon.dart';
 import 'package:pokedex/domain/pokemon_repository.dart';
 
 class PokemonRepositoryImpl implements PokemonRepository {

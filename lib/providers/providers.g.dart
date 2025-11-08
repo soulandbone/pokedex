@@ -6,7 +6,7 @@ part of 'providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dioHash() => r'58eeefbd0832498ca2574c1fe69ed783c58d1d8f';
+String _$dioHash() => r'a03da399b44b3740dc4fcfc6716203041d66ff01';
 
 /// See also [dio].
 @ProviderFor(dio)
@@ -22,7 +22,7 @@ final dioProvider = AutoDisposeProvider<Dio>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef DioRef = AutoDisposeProviderRef<Dio>;
-String _$pokemonApiClientHash() => r'cbb0ffff8c6f3efa0d2391f8854f14ec5d627e60';
+String _$pokemonApiClientHash() => r'b9bece61d8fd5c3f9c56085c1cad866ed9963b94';
 
 /// See also [pokemonApiClient].
 @ProviderFor(pokemonApiClient)
@@ -39,7 +39,7 @@ final pokemonApiClientProvider = AutoDisposeProvider<PokemonApiClient>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef PokemonApiClientRef = AutoDisposeProviderRef<PokemonApiClient>;
-String _$pokemonRepositoryHash() => r'64debbff39fcf41164c518f56e6f269dc499fedd';
+String _$pokemonRepositoryHash() => r'cffc944c11f09266e58435914a662fa4380727b4';
 
 /// See also [pokemonRepository].
 @ProviderFor(pokemonRepository)
@@ -57,7 +57,7 @@ final pokemonRepositoryProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef PokemonRepositoryRef = AutoDisposeProviderRef<PokemonRepository>;
-String _$pokemonListHash() => r'255488b2357cace100a263d28dfb588e52039f72';
+String _$pokemonListHash() => r'7229a4142a0f278b487495f1616218946e475679';
 
 /// See also [pokemonList].
 @ProviderFor(pokemonList)
@@ -73,8 +73,48 @@ final pokemonListProvider = AutoDisposeFutureProvider<List<Pokemon>>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef PokemonListRef = AutoDisposeFutureProviderRef<List<Pokemon>>;
+String _$pokemonTileDataApiClientHash() =>
+    r'2f57224f1a1d318ef1fa524d1f5aa5aab3b21b9f';
+
+/// See also [pokemonTileDataApiClient].
+@ProviderFor(pokemonTileDataApiClient)
+final pokemonTileDataApiClientProvider =
+    AutoDisposeProvider<PokemonTileDataApiClient>.internal(
+  pokemonTileDataApiClient,
+  name: r'pokemonTileDataApiClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pokemonTileDataApiClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef PokemonTileDataApiClientRef
+    = AutoDisposeProviderRef<PokemonTileDataApiClient>;
+String _$pokemonTileDataRepositoryHash() =>
+    r'02d2ef0f4b331a64edaff4dc336b704e65ddeba8';
+
+/// See also [pokemonTileDataRepository].
+@ProviderFor(pokemonTileDataRepository)
+final pokemonTileDataRepositoryProvider =
+    AutoDisposeProvider<PokemonTileDataRepository>.internal(
+  pokemonTileDataRepository,
+  name: r'pokemonTileDataRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pokemonTileDataRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef PokemonTileDataRepositoryRef
+    = AutoDisposeProviderRef<PokemonTileDataRepository>;
 String _$fetchPokemonDetailsHash() =>
-    r'c30768f402d29ff37a710dad84e33e1e0f896bbd';
+    r'80aae89554bab8b5ef17530e9fbb3a386ba18a3f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -102,8 +142,7 @@ class _SystemHash {
 const fetchPokemonDetailsProvider = FetchPokemonDetailsFamily();
 
 /// See also [fetchPokemonDetails].
-class FetchPokemonDetailsFamily
-    extends Family<AsyncValue<Map<String, dynamic>>> {
+class FetchPokemonDetailsFamily extends Family<AsyncValue<PokemonTileData>> {
   /// See also [fetchPokemonDetails].
   const FetchPokemonDetailsFamily();
 
@@ -142,7 +181,7 @@ class FetchPokemonDetailsFamily
 
 /// See also [fetchPokemonDetails].
 class FetchPokemonDetailsProvider
-    extends AutoDisposeFutureProvider<Map<String, dynamic>> {
+    extends AutoDisposeFutureProvider<PokemonTileData> {
   /// See also [fetchPokemonDetails].
   FetchPokemonDetailsProvider(
     String url,
@@ -177,8 +216,7 @@ class FetchPokemonDetailsProvider
 
   @override
   Override overrideWith(
-    FutureOr<Map<String, dynamic>> Function(FetchPokemonDetailsRef provider)
-        create,
+    FutureOr<PokemonTileData> Function(FetchPokemonDetailsRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -195,7 +233,7 @@ class FetchPokemonDetailsProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<Map<String, dynamic>> createElement() {
+  AutoDisposeFutureProviderElement<PokemonTileData> createElement() {
     return _FetchPokemonDetailsProviderElement(this);
   }
 
@@ -215,14 +253,13 @@ class FetchPokemonDetailsProvider
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin FetchPokemonDetailsRef
-    on AutoDisposeFutureProviderRef<Map<String, dynamic>> {
+mixin FetchPokemonDetailsRef on AutoDisposeFutureProviderRef<PokemonTileData> {
   /// The parameter `url` of this provider.
   String get url;
 }
 
 class _FetchPokemonDetailsProviderElement
-    extends AutoDisposeFutureProviderElement<Map<String, dynamic>>
+    extends AutoDisposeFutureProviderElement<PokemonTileData>
     with FetchPokemonDetailsRef {
   _FetchPokemonDetailsProviderElement(super.provider);
 
