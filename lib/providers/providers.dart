@@ -55,6 +55,6 @@ PokemonTileDataRepository pokemonTileDataRepository(Ref ref) {
 @riverpod
 Future<PokemonTileData> fetchPokemonDetails(Ref ref, String url) async {
   //fetchPokemonDetailsRef
-  final repository = ref.watch(pokemonTileDataRepositoryProvider);
+  final repository = ref.read(pokemonTileDataRepositoryProvider);
   return repository.fetchPokemonTileData(url);
 }

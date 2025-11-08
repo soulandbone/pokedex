@@ -114,7 +114,7 @@ final pokemonTileDataRepositoryProvider =
 typedef PokemonTileDataRepositoryRef
     = AutoDisposeProviderRef<PokemonTileDataRepository>;
 String _$fetchPokemonDetailsHash() =>
-    r'80aae89554bab8b5ef17530e9fbb3a386ba18a3f';
+    r'8000faa77e26c3d0cec111ee1d5b7a6f3e75e08f';
 
 /// Copied from Dart SDK
 class _SystemHash {

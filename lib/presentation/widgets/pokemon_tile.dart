@@ -11,6 +11,7 @@ class PokemonTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final detailsAsync = ref.watch(fetchPokemonDetailsProvider(pokemon.url));
+    print('Details Async: $detailsAsync');
 
     return detailsAsync.when(
         data: (details) => Dismissible(
@@ -75,7 +76,7 @@ class PokemonTile extends ConsumerWidget {
                               'assets/large_icons/grass.png',
                               fit: BoxFit.fitHeight,
                             ),
-                            Image.asset('assets/bulbasaur_sprite.png'),
+                            Image.network(details.frontDefault),
                             Positioned(
                               right: 10,
                               top: 10,

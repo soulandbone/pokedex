@@ -20,6 +20,7 @@ PokemonTileData _$PokemonTileDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PokemonTileData {
+  String get frontDefault => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
 
   /// Serializes this PokemonTileData to a JSON map.
@@ -38,7 +39,7 @@ abstract class $PokemonTileDataCopyWith<$Res> {
           PokemonTileData value, $Res Function(PokemonTileData) then) =
       _$PokemonTileDataCopyWithImpl<$Res, PokemonTileData>;
   @useResult
-  $Res call({int weight});
+  $Res call({String frontDefault, int weight});
 }
 
 /// @nodoc
@@ -56,9 +57,14 @@ class _$PokemonTileDataCopyWithImpl<$Res, $Val extends PokemonTileData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? frontDefault = null,
     Object? weight = null,
   }) {
     return _then(_value.copyWith(
+      frontDefault: null == frontDefault
+          ? _value.frontDefault
+          : frontDefault // ignore: cast_nullable_to_non_nullable
+              as String,
       weight: null == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -75,7 +81,7 @@ abstract class _$$PokemonTileDataImplCopyWith<$Res>
       __$$PokemonTileDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int weight});
+  $Res call({String frontDefault, int weight});
 }
 
 /// @nodoc
@@ -91,9 +97,14 @@ class __$$PokemonTileDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? frontDefault = null,
     Object? weight = null,
   }) {
     return _then(_$PokemonTileDataImpl(
+      frontDefault: null == frontDefault
+          ? _value.frontDefault
+          : frontDefault // ignore: cast_nullable_to_non_nullable
+              as String,
       weight: null == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
@@ -103,19 +114,23 @@ class __$$PokemonTileDataImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(createToJson: true)
 class _$PokemonTileDataImpl implements _PokemonTileData {
-  const _$PokemonTileDataImpl({required this.weight});
+  const _$PokemonTileDataImpl(
+      {required this.frontDefault, required this.weight});
 
   factory _$PokemonTileDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonTileDataImplFromJson(json);
 
   @override
+  final String frontDefault;
+  @override
   final int weight;
 
   @override
   String toString() {
-    return 'PokemonTileData(weight: $weight)';
+    return 'PokemonTileData(frontDefault: $frontDefault, weight: $weight)';
   }
 
   @override
@@ -123,12 +138,14 @@ class _$PokemonTileDataImpl implements _PokemonTileData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PokemonTileDataImpl &&
+            (identical(other.frontDefault, frontDefault) ||
+                other.frontDefault == frontDefault) &&
             (identical(other.weight, weight) || other.weight == weight));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, weight);
+  int get hashCode => Object.hash(runtimeType, frontDefault, weight);
 
   /// Create a copy of PokemonTileData
   /// with the given fields replaced by the non-null parameter values.
@@ -148,12 +165,15 @@ class _$PokemonTileDataImpl implements _PokemonTileData {
 }
 
 abstract class _PokemonTileData implements PokemonTileData {
-  const factory _PokemonTileData({required final int weight}) =
-      _$PokemonTileDataImpl;
+  const factory _PokemonTileData(
+      {required final String frontDefault,
+      required final int weight}) = _$PokemonTileDataImpl;
 
   factory _PokemonTileData.fromJson(Map<String, dynamic> json) =
       _$PokemonTileDataImpl.fromJson;
 
+  @override
+  String get frontDefault;
   @override
   int get weight;
 

@@ -10,7 +10,7 @@ class PokemonTileDataRepositoryImpl implements PokemonTileDataRepository {
   @override
   Future<PokemonTileData> fetchPokemonTileData(String url) async {
     final details = await tileDataApiClient.fetchPokemonTileData(url);
-
+    //print('details are ${details['sprites']['front_default']}');
     return PokemonTileData.fromJson(details);
   }
 }
