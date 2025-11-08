@@ -21,7 +21,13 @@ class Favoritos extends ConsumerWidget {
       itemCount: filteredPokemons.length,
       itemBuilder: (context, index) {
         final pokemon = filteredPokemons[index];
-        return PokemonTile(pokemon: pokemon);
+        print('${pokemon.id}');
+        return Dismissible(
+            onDismissed: (direction) {
+              ref.read(favoritesProvider.notifier).toggle(pokemon.id);
+            },
+            key: ValueKey(pokemon.id),
+            child: PokemonTile(pokemon: pokemon));
       },
     );
   }
