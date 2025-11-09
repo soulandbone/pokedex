@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/constants/app_strings.dart';
 import 'package:pokedex/domain/entities/pokemon_tile_data/pokemon_tile_data.dart';
 import 'package:pokedex/helpers/capitalizer.dart';
@@ -38,7 +39,8 @@ class PokemonInformation extends StatelessWidget {
                     width: double.infinity,
                     child: CustomPaint(painter: CustomTopBackground()),
                   ),
-                  Center(child: Image.asset('assets/large_icons/grass.png')),
+                  Center(
+                      child: (AppMaps.typeIconMapLarge[pokemonInfo.types[0]])),
                   Positioned(
                       bottom: 0,
                       left: 0,

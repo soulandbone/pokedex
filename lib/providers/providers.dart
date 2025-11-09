@@ -1,11 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/data/datasources/pokemon_base_info_api_client.dart';
+
 import 'package:pokedex/data/datasources/pokemon_tile_data_api_client.dart';
-import 'package:pokedex/data/repositories/pokemon_base_info_repository_impl.dart';
 import 'package:pokedex/data/repositories/pokemon_tile_data_repository.impl.dart';
-import 'package:pokedex/domain/entities/pokemon_base_info/pokemon_base_info.dart';
+
 import 'package:pokedex/domain/entities/pokemon_tile_data/pokemon_tile_data.dart';
-import 'package:pokedex/domain/pokemon_base_info_repository.dart';
+
 import 'package:pokedex/domain/pokemon_tile_data_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:dio/dio.dart';
@@ -61,23 +60,4 @@ Future<PokemonTileData> fetchPokemonDetails(Ref ref, String url) async {
   //fetchPokemonDetailsRef
   final repository = ref.read(pokemonTileDataRepositoryProvider);
   return repository.fetchPokemonTileData(url);
-}
-
-@riverpod
-PokemonBaseInfoApiClient pokemonBaseInfoApiClient(Ref ref) {
-  final dioInstance = ref.read(dioProvider);
-  return PokemonBaseInfoApiClient(dioInstance);
-}
-
-@riverpod
-PokemonBaseInfoRepository pokemonBaseInfoRepository(Ref ref) {
-  return PokemonBaseInfoRepositoryImpl(
-      ref.read(pokemonBaseInfoApiClientProvider));
-}
-
-@riverpod
-Future<PokemonBaseInfo> fetchPokemonBaseInfo(Ref ref, String id) async {
-  //fetchPokemonDetailsRef
-  final repository = ref.read(pokemonBaseInfoRepositoryProvider);
-  return repository.fetchPokemonBaseInfo(id);
 }
