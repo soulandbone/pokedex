@@ -38,7 +38,7 @@ PokemonRepository pokemonRepository(Ref ref) {
   return PokemonRepositoryImpl(ref.read(pokemonApiClientProvider));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<List<Pokemon>> pokemonList(Ref ref) async {
   //PokemonListRef
   final repository = ref.watch(pokemonRepositoryProvider);
@@ -59,7 +59,7 @@ PokemonTileDataRepository pokemonTileDataRepository(Ref ref) {
       ref.read(pokemonTileDataApiClientProvider));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<PokemonTileData> fetchPokemonDetails(Ref ref, String url) async {
   //fetchPokemonDetailsRef
   final repository = ref.read(pokemonTileDataRepositoryProvider);

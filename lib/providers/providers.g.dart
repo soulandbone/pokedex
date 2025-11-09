@@ -57,11 +57,11 @@ final pokemonRepositoryProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef PokemonRepositoryRef = AutoDisposeProviderRef<PokemonRepository>;
-String _$pokemonListHash() => r'7229a4142a0f278b487495f1616218946e475679';
+String _$pokemonListHash() => r'12f504de4a2aa18a348df0833f5a4ed1b6aa8ab3';
 
 /// See also [pokemonList].
 @ProviderFor(pokemonList)
-final pokemonListProvider = AutoDisposeFutureProvider<List<Pokemon>>.internal(
+final pokemonListProvider = FutureProvider<List<Pokemon>>.internal(
   pokemonList,
   name: r'pokemonListProvider',
   debugGetCreateSourceHash:
@@ -72,7 +72,7 @@ final pokemonListProvider = AutoDisposeFutureProvider<List<Pokemon>>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef PokemonListRef = AutoDisposeFutureProviderRef<List<Pokemon>>;
+typedef PokemonListRef = FutureProviderRef<List<Pokemon>>;
 String _$pokemonTileDataApiClientHash() =>
     r'2f57224f1a1d318ef1fa524d1f5aa5aab3b21b9f';
 
@@ -114,7 +114,7 @@ final pokemonTileDataRepositoryProvider =
 typedef PokemonTileDataRepositoryRef
     = AutoDisposeProviderRef<PokemonTileDataRepository>;
 String _$fetchPokemonDetailsHash() =>
-    r'8000faa77e26c3d0cec111ee1d5b7a6f3e75e08f';
+    r'0e7fec589b97af866c5131db50d4d28276d844bf';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -180,8 +180,7 @@ class FetchPokemonDetailsFamily extends Family<AsyncValue<PokemonTileData>> {
 }
 
 /// See also [fetchPokemonDetails].
-class FetchPokemonDetailsProvider
-    extends AutoDisposeFutureProvider<PokemonTileData> {
+class FetchPokemonDetailsProvider extends FutureProvider<PokemonTileData> {
   /// See also [fetchPokemonDetails].
   FetchPokemonDetailsProvider(
     String url,
@@ -233,7 +232,7 @@ class FetchPokemonDetailsProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<PokemonTileData> createElement() {
+  FutureProviderElement<PokemonTileData> createElement() {
     return _FetchPokemonDetailsProviderElement(this);
   }
 
@@ -253,14 +252,13 @@ class FetchPokemonDetailsProvider
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin FetchPokemonDetailsRef on AutoDisposeFutureProviderRef<PokemonTileData> {
+mixin FetchPokemonDetailsRef on FutureProviderRef<PokemonTileData> {
   /// The parameter `url` of this provider.
   String get url;
 }
 
 class _FetchPokemonDetailsProviderElement
-    extends AutoDisposeFutureProviderElement<PokemonTileData>
-    with FetchPokemonDetailsRef {
+    extends FutureProviderElement<PokemonTileData> with FetchPokemonDetailsRef {
   _FetchPokemonDetailsProviderElement(super.provider);
 
   @override
