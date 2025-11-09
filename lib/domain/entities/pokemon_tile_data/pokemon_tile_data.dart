@@ -9,6 +9,7 @@ class PokemonTileData with _$PokemonTileData {
   const factory PokemonTileData({
     required String frontDefault,
     required int weight,
+    required int height,
     required List<String> types,
   }) = _PokemonTileData;
 
@@ -24,10 +25,11 @@ Map<String, dynamic> _getJsonAtPath(Map<String, dynamic> json) {
       .map((typeItem) =>
           (typeItem as Map<String, dynamic>)['type']['name'] as String)
       .toList();
-  // Create a new map that contains only the flattened data
+
   return {
     'frontDefault': frontDefaultUrl,
     'weight': json['weight'],
-    'types': types
+    'types': types,
+    'height': json['height'],
   };
 }

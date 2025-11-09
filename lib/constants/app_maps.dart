@@ -4,6 +4,9 @@ import 'package:pokedex/constants/app_colors.dart';
 double width = 70;
 double height = 70;
 
+double widthMedium = 90;
+double heightMedium = 90;
+
 class AppMaps {
   static Map<String, Widget> typeIconMapSmall = {
     'grass': Image.asset(
@@ -197,5 +200,100 @@ class AppMaps {
     'ghost': AppColors.kGhostTransparent,
     'dragon': AppColors.kDragonTransparent,
     'dark': AppColors.kGrassTransparent,
+  };
+
+  static Map<String, Widget> typeIconMapMedium = {
+    'grass': Image.asset(
+      'assets/small_icons/planta.png',
+      width: widthMedium,
+      height: heightMedium,
+    ), // example icon
+    'bug': Image.asset(
+      'assets/small_icons/bicho.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'normal': Image.asset(
+      'assets/small_icons/normal.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'flying': Image.asset(
+      'assets/small_icons/volador.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'poison': Image.asset(
+      'assets/small_icons/veneno.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'fire': Image.asset(
+      'assets/small_icons/fuego.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'water': Image.asset(
+      'assets/small_icons/agua.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'electric': Image.asset(
+      'assets/small_icons/electrico.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'ground': Image.asset(
+      'assets/small_icons/tierra.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'fairy': Image.asset(
+      'assets/small_icons/hada.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'fighting': Image.asset(
+      'assets/small_icons/lucha.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'psychic': Image.asset(
+      'assets/small_icons/psiquico.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'rock': Image.asset(
+      'assets/small_icons/roca.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'steel': Image.asset(
+      'assets/small_icons/acero.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'ice': Image.asset(
+      'assets/small_icons/hielo.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'ghost': Image.asset(
+      'assets/small_icons/fantasma.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'dragon': Image.asset(
+      'assets/small_icons/dragon.png',
+      width: widthMedium,
+      height: heightMedium,
+    ),
+    'dark': Image.asset(
+      'assets/small_icons/siniestro.png',
+      width: widthMedium,
+      height: heightMedium,
+    )
+
+    // more icons
   };
 }

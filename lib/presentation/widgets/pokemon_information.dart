@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/models/pokemon_info.dart';
-import 'package:pokedex/presentation/widgets/custom_ellipse.dart';
+import 'package:pokedex/domain/entities/pokemon_tile_data/pokemon_tile_data.dart';
+import 'package:pokedex/helpers/capitalizer.dart';
+import 'package:pokedex/helpers/string_to_icon_mapper.dart';
+
+import 'package:pokedex/presentation/widgets/custom_top_background.dart';
 import 'package:pokedex/presentation/widgets/label_value.dart';
 
 class PokemonInformation extends StatelessWidget {
-  const PokemonInformation({required this.pokemonInfo, super.key});
+  const PokemonInformation(
+      {required this.name,
+      required this.id,
+      required this.pokemonInfo,
+      super.key});
 
-  final PokemonInfo pokemonInfo;
+  final PokemonTileData pokemonInfo;
+  final String name;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemonInfo.name),
+        title: Text(name),
         actions: [Icon(Icons.favorite_border_outlined)],
       ),
       body: SingleChildScrollView(
@@ -23,22 +32,24 @@ class PokemonInformation extends StatelessWidget {
               child: Stack(
                 children: [
                   SizedBox(
-                    height: 500,
+                    height: 400,
                     width: double.infinity,
-                    child: CustomPaint(painter: CustomEllipse()),
+                    child: CustomPaint(painter: CustomTopBackground()),
                   ),
-                  Image.asset('assets/large_icons/grass.png'),
+                  Center(child: Image.asset('assets/large_icons/grass.png')),
                 ],
               ),
             ),
             Text(
-              pokemonInfo.name,
+              capitalizer(name),
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
-            Text(pokemonInfo.id.toString(), style: TextStyle(fontSize: 22)),
-            SizedBox(height: 90),
-            Row(children: [Text('Veneno'), Text('Planta')]),
-            Text(pokemonInfo.description),
+            Text('N $id', style: TextStyle(fontSize: 22)),
+            SizedBox(height: 10),
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: mapStringToIconsMedium(pokemonInfo.types)),
+            Text(pokemonInfo.weight.toString()),
             Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -46,12 +57,12 @@ class PokemonInformation extends StatelessWidget {
                 LabelValue(
                   textLabel: 'Peso',
                   icon: Icons.balance,
-                  value: '6.9 kg',
+                  value: '${(pokemonInfo.weight / 10).toString()} KG',
                 ),
                 LabelValue(
                   textLabel: 'Altura',
                   icon: Icons.height,
-                  value: '0.7 m',
+                  value: '${pokemonInfo.height / 10} m',
                 ),
               ],
             ),

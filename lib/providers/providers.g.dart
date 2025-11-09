@@ -266,5 +266,178 @@ class _FetchPokemonDetailsProviderElement
   @override
   String get url => (origin as FetchPokemonDetailsProvider).url;
 }
+
+String _$pokemonBaseInfoApiClientHash() =>
+    r'53381ea5f9f9ce8143f896cc615eb40f18002619';
+
+/// See also [pokemonBaseInfoApiClient].
+@ProviderFor(pokemonBaseInfoApiClient)
+final pokemonBaseInfoApiClientProvider =
+    AutoDisposeProvider<PokemonBaseInfoApiClient>.internal(
+  pokemonBaseInfoApiClient,
+  name: r'pokemonBaseInfoApiClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pokemonBaseInfoApiClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef PokemonBaseInfoApiClientRef
+    = AutoDisposeProviderRef<PokemonBaseInfoApiClient>;
+String _$pokemonBaseInfoRepositoryHash() =>
+    r'09fe3e2fc019567b7e455ae7967911d9163664ba';
+
+/// See also [pokemonBaseInfoRepository].
+@ProviderFor(pokemonBaseInfoRepository)
+final pokemonBaseInfoRepositoryProvider =
+    AutoDisposeProvider<PokemonBaseInfoRepository>.internal(
+  pokemonBaseInfoRepository,
+  name: r'pokemonBaseInfoRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pokemonBaseInfoRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef PokemonBaseInfoRepositoryRef
+    = AutoDisposeProviderRef<PokemonBaseInfoRepository>;
+String _$fetchPokemonBaseInfoHash() =>
+    r'0950893f396e016d235b311b1ed919f83e1cafa9';
+
+/// See also [fetchPokemonBaseInfo].
+@ProviderFor(fetchPokemonBaseInfo)
+const fetchPokemonBaseInfoProvider = FetchPokemonBaseInfoFamily();
+
+/// See also [fetchPokemonBaseInfo].
+class FetchPokemonBaseInfoFamily extends Family<AsyncValue<PokemonBaseInfo>> {
+  /// See also [fetchPokemonBaseInfo].
+  const FetchPokemonBaseInfoFamily();
+
+  /// See also [fetchPokemonBaseInfo].
+  FetchPokemonBaseInfoProvider call(
+    String id,
+  ) {
+    return FetchPokemonBaseInfoProvider(
+      id,
+    );
+  }
+
+  @override
+  FetchPokemonBaseInfoProvider getProviderOverride(
+    covariant FetchPokemonBaseInfoProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchPokemonBaseInfoProvider';
+}
+
+/// See also [fetchPokemonBaseInfo].
+class FetchPokemonBaseInfoProvider
+    extends AutoDisposeFutureProvider<PokemonBaseInfo> {
+  /// See also [fetchPokemonBaseInfo].
+  FetchPokemonBaseInfoProvider(
+    String id,
+  ) : this._internal(
+          (ref) => fetchPokemonBaseInfo(
+            ref as FetchPokemonBaseInfoRef,
+            id,
+          ),
+          from: fetchPokemonBaseInfoProvider,
+          name: r'fetchPokemonBaseInfoProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$fetchPokemonBaseInfoHash,
+          dependencies: FetchPokemonBaseInfoFamily._dependencies,
+          allTransitiveDependencies:
+              FetchPokemonBaseInfoFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  FetchPokemonBaseInfoProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<PokemonBaseInfo> Function(FetchPokemonBaseInfoRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchPokemonBaseInfoProvider._internal(
+        (ref) => create(ref as FetchPokemonBaseInfoRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<PokemonBaseInfo> createElement() {
+    return _FetchPokemonBaseInfoProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FetchPokemonBaseInfoProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin FetchPokemonBaseInfoRef on AutoDisposeFutureProviderRef<PokemonBaseInfo> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _FetchPokemonBaseInfoProviderElement
+    extends AutoDisposeFutureProviderElement<PokemonBaseInfo>
+    with FetchPokemonBaseInfoRef {
+  _FetchPokemonBaseInfoProviderElement(super.provider);
+
+  @override
+  String get id => (origin as FetchPokemonBaseInfoProvider).id;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

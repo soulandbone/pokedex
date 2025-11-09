@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'pokemon_tile_data.dart';
+part of 'pokemon_base_info.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,47 +14,47 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-PokemonTileData _$PokemonTileDataFromJson(Map<String, dynamic> json) {
-  return _PokemonTileData.fromJson(json);
+PokemonBaseInfo _$PokemonBaseInfoFromJson(Map<String, dynamic> json) {
+  return _PokemonBaseInfo.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PokemonTileData {
+mixin _$PokemonBaseInfo {
   String get frontDefault => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
   List<String> get types => throw _privateConstructorUsedError;
 
-  /// Serializes this PokemonTileData to a JSON map.
+  /// Serializes this PokemonBaseInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of PokemonTileData
+  /// Create a copy of PokemonBaseInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PokemonTileDataCopyWith<PokemonTileData> get copyWith =>
+  $PokemonBaseInfoCopyWith<PokemonBaseInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PokemonTileDataCopyWith<$Res> {
-  factory $PokemonTileDataCopyWith(
-          PokemonTileData value, $Res Function(PokemonTileData) then) =
-      _$PokemonTileDataCopyWithImpl<$Res, PokemonTileData>;
+abstract class $PokemonBaseInfoCopyWith<$Res> {
+  factory $PokemonBaseInfoCopyWith(
+          PokemonBaseInfo value, $Res Function(PokemonBaseInfo) then) =
+      _$PokemonBaseInfoCopyWithImpl<$Res, PokemonBaseInfo>;
   @useResult
   $Res call({String frontDefault, int weight, int height, List<String> types});
 }
 
 /// @nodoc
-class _$PokemonTileDataCopyWithImpl<$Res, $Val extends PokemonTileData>
-    implements $PokemonTileDataCopyWith<$Res> {
-  _$PokemonTileDataCopyWithImpl(this._value, this._then);
+class _$PokemonBaseInfoCopyWithImpl<$Res, $Val extends PokemonBaseInfo>
+    implements $PokemonBaseInfoCopyWith<$Res> {
+  _$PokemonBaseInfoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PokemonTileData
+  /// Create a copy of PokemonBaseInfo
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -86,25 +86,25 @@ class _$PokemonTileDataCopyWithImpl<$Res, $Val extends PokemonTileData>
 }
 
 /// @nodoc
-abstract class _$$PokemonTileDataImplCopyWith<$Res>
-    implements $PokemonTileDataCopyWith<$Res> {
-  factory _$$PokemonTileDataImplCopyWith(_$PokemonTileDataImpl value,
-          $Res Function(_$PokemonTileDataImpl) then) =
-      __$$PokemonTileDataImplCopyWithImpl<$Res>;
+abstract class _$$PokemonBaseInfoImplCopyWith<$Res>
+    implements $PokemonBaseInfoCopyWith<$Res> {
+  factory _$$PokemonBaseInfoImplCopyWith(_$PokemonBaseInfoImpl value,
+          $Res Function(_$PokemonBaseInfoImpl) then) =
+      __$$PokemonBaseInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String frontDefault, int weight, int height, List<String> types});
 }
 
 /// @nodoc
-class __$$PokemonTileDataImplCopyWithImpl<$Res>
-    extends _$PokemonTileDataCopyWithImpl<$Res, _$PokemonTileDataImpl>
-    implements _$$PokemonTileDataImplCopyWith<$Res> {
-  __$$PokemonTileDataImplCopyWithImpl(
-      _$PokemonTileDataImpl _value, $Res Function(_$PokemonTileDataImpl) _then)
+class __$$PokemonBaseInfoImplCopyWithImpl<$Res>
+    extends _$PokemonBaseInfoCopyWithImpl<$Res, _$PokemonBaseInfoImpl>
+    implements _$$PokemonBaseInfoImplCopyWith<$Res> {
+  __$$PokemonBaseInfoImplCopyWithImpl(
+      _$PokemonBaseInfoImpl _value, $Res Function(_$PokemonBaseInfoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PokemonTileData
+  /// Create a copy of PokemonBaseInfo
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -114,7 +114,7 @@ class __$$PokemonTileDataImplCopyWithImpl<$Res>
     Object? height = null,
     Object? types = null,
   }) {
-    return _then(_$PokemonTileDataImpl(
+    return _then(_$PokemonBaseInfoImpl(
       frontDefault: null == frontDefault
           ? _value.frontDefault
           : frontDefault // ignore: cast_nullable_to_non_nullable
@@ -138,16 +138,16 @@ class __$$PokemonTileDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(createToJson: true)
-class _$PokemonTileDataImpl implements _PokemonTileData {
-  const _$PokemonTileDataImpl(
+class _$PokemonBaseInfoImpl implements _PokemonBaseInfo {
+  const _$PokemonBaseInfoImpl(
       {required this.frontDefault,
       required this.weight,
       required this.height,
       required final List<String> types})
       : _types = types;
 
-  factory _$PokemonTileDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PokemonTileDataImplFromJson(json);
+  factory _$PokemonBaseInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PokemonBaseInfoImplFromJson(json);
 
   @override
   final String frontDefault;
@@ -165,14 +165,14 @@ class _$PokemonTileDataImpl implements _PokemonTileData {
 
   @override
   String toString() {
-    return 'PokemonTileData(frontDefault: $frontDefault, weight: $weight, height: $height, types: $types)';
+    return 'PokemonBaseInfo(frontDefault: $frontDefault, weight: $weight, height: $height, types: $types)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PokemonTileDataImpl &&
+            other is _$PokemonBaseInfoImpl &&
             (identical(other.frontDefault, frontDefault) ||
                 other.frontDefault == frontDefault) &&
             (identical(other.weight, weight) || other.weight == weight) &&
@@ -185,32 +185,32 @@ class _$PokemonTileDataImpl implements _PokemonTileData {
   int get hashCode => Object.hash(runtimeType, frontDefault, weight, height,
       const DeepCollectionEquality().hash(_types));
 
-  /// Create a copy of PokemonTileData
+  /// Create a copy of PokemonBaseInfo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PokemonTileDataImplCopyWith<_$PokemonTileDataImpl> get copyWith =>
-      __$$PokemonTileDataImplCopyWithImpl<_$PokemonTileDataImpl>(
+  _$$PokemonBaseInfoImplCopyWith<_$PokemonBaseInfoImpl> get copyWith =>
+      __$$PokemonBaseInfoImplCopyWithImpl<_$PokemonBaseInfoImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PokemonTileDataImplToJson(
+    return _$$PokemonBaseInfoImplToJson(
       this,
     );
   }
 }
 
-abstract class _PokemonTileData implements PokemonTileData {
-  const factory _PokemonTileData(
+abstract class _PokemonBaseInfo implements PokemonBaseInfo {
+  const factory _PokemonBaseInfo(
       {required final String frontDefault,
       required final int weight,
       required final int height,
-      required final List<String> types}) = _$PokemonTileDataImpl;
+      required final List<String> types}) = _$PokemonBaseInfoImpl;
 
-  factory _PokemonTileData.fromJson(Map<String, dynamic> json) =
-      _$PokemonTileDataImpl.fromJson;
+  factory _PokemonBaseInfo.fromJson(Map<String, dynamic> json) =
+      _$PokemonBaseInfoImpl.fromJson;
 
   @override
   String get frontDefault;
@@ -221,10 +221,10 @@ abstract class _PokemonTileData implements PokemonTileData {
   @override
   List<String> get types;
 
-  /// Create a copy of PokemonTileData
+  /// Create a copy of PokemonBaseInfo
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PokemonTileDataImplCopyWith<_$PokemonTileDataImpl> get copyWith =>
+  _$$PokemonBaseInfoImplCopyWith<_$PokemonBaseInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
