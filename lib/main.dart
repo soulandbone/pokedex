@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/models/pokemon_info.dart';
 import 'package:pokedex/presentation/screens/home_page.dart';
 
 import 'package:pokedex/presentation/widgets/pokemon_information.dart';
