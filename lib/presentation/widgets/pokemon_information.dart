@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/constants/app_strings.dart';
 import 'package:pokedex/domain/entities/pokemon_tile_data/pokemon_tile_data.dart';
 import 'package:pokedex/helpers/capitalizer.dart';
+import 'package:pokedex/helpers/number_formatter.dart';
 import 'package:pokedex/helpers/string_to_icon_mapper.dart';
 
 import 'package:pokedex/presentation/widgets/custom_top_background.dart';
@@ -37,6 +39,18 @@ class PokemonInformation extends StatelessWidget {
                     child: CustomPaint(painter: CustomTopBackground()),
                   ),
                   Center(child: Image.asset('assets/large_icons/grass.png')),
+                  Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                          child: SizedBox(
+                        width: 300,
+                        child: Image.network(
+                          fit: BoxFit.contain,
+                          pokemonInfo.frontDefault,
+                        ),
+                      ))),
                 ],
               ),
             ),
@@ -44,7 +58,7 @@ class PokemonInformation extends StatelessWidget {
               capitalizer(name),
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
-            Text('N $id', style: TextStyle(fontSize: 22)),
+            Text('N° ${numberFormatter(id)}', style: TextStyle(fontSize: 22)),
             SizedBox(height: 10),
             Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,15 +68,19 @@ class PokemonInformation extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                LabelValue(
-                  textLabel: 'Peso',
-                  icon: Icons.balance,
-                  value: '${(pokemonInfo.weight / 10).toString()} KG',
+                Expanded(
+                  child: LabelValue(
+                    textLabel: AppStrings.kPeso.toUpperCase(),
+                    icon: Icons.balance,
+                    value: '${(pokemonInfo.weight / 10).toString()} KG',
+                  ),
                 ),
-                LabelValue(
-                  textLabel: 'Altura',
-                  icon: Icons.height,
-                  value: '${pokemonInfo.height / 10} m',
+                Expanded(
+                  child: LabelValue(
+                    textLabel: AppStrings.kAltura.toUpperCase(),
+                    icon: Icons.height,
+                    value: '${pokemonInfo.height / 10} m',
+                  ),
                 ),
               ],
             ),
@@ -70,15 +88,19 @@ class PokemonInformation extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                LabelValue(
-                  textLabel: 'Categoria',
-                  icon: Icons.category,
-                  value: 'SEMILLA',
+                Expanded(
+                  child: LabelValue(
+                    textLabel: AppStrings.kCategoria.toUpperCase(),
+                    icon: Icons.category,
+                    value: 'SEMILLA',
+                  ),
                 ),
-                LabelValue(
-                  textLabel: 'Habilidad',
-                  icon: Icons.sports_basketball,
-                  value: 'ESPESURA',
+                Expanded(
+                  child: LabelValue(
+                    textLabel: AppStrings.kHabilidad.toUpperCase(),
+                    icon: Icons.sports_basketball,
+                    value: 'ESPESURA',
+                  ),
                 ),
               ],
             ),

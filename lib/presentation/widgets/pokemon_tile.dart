@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/domain/entities/pokemon/pokemon.dart';
 import 'package:pokedex/helpers/capitalizer.dart';
+import 'package:pokedex/helpers/number_formatter.dart';
 import 'package:pokedex/helpers/string_to_icon_mapper.dart';
 import 'package:pokedex/presentation/widgets/pokemon_information.dart';
 import 'package:pokedex/providers/favorites.dart';
@@ -57,7 +58,10 @@ class PokemonTile extends ConsumerWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(pokemon.id.toString()),
+                              Text(
+                                'N°${numberFormatter(pokemon.id)} ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
                               Text(
                                 capitalizer(pokemon.name),
                                 style: TextStyle(

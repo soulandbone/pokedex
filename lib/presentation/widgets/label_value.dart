@@ -14,21 +14,35 @@ class LabelValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(children: [Icon(icon), Text(textLabel)]),
-        Container(
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Colors.grey),
-            borderRadius: BorderRadius.circular(12),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 15),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon, size: 18),
+              SizedBox(width: 4),
+              Text(textLabel),
+            ],
           ),
-          child: Text(
-            value,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(),
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Colors.grey),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: Text(
+                value,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

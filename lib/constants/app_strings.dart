@@ -11,6 +11,10 @@ class AppStrings {
   static const kEmpecemos = 'Empecemos';
   static const kFiltraPorPrefs = 'Filtra por tus preferencias';
   static const kTipo = 'Tipo';
+  static const kPeso = 'Peso';
+  static const kAltura = 'Altura';
+  static const kHabilidad = 'Habilidad';
+  static const kCategoria = 'Categoria';
 
 //***************************TIPOS*********************************** */
   static const kAcero = 'Acero';
