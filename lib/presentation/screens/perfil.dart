@@ -6,7 +6,6 @@ class Perfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Este es el perfil')),
       body: Center(child: Text('Este es el perfil')),
     );
   }
