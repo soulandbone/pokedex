@@ -99,9 +99,12 @@ class PokemonTile extends ConsumerWidget {
                                     .read(favoritesProvider.notifier)
                                     .toggle(pokemon.id);
                               },
-                              child: Icon(isFav
-                                  ? Icons.favorite
-                                  : Icons.favorite_border_outlined),
+                              child: Icon(
+                                isFav
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_outlined,
+                                color: isFav ? Colors.red : Colors.black,
+                              ),
                             )),
                       ],
                     ),

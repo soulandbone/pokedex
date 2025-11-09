@@ -15,6 +15,8 @@ class AppStrings {
   static const kAltura = 'Altura';
   static const kHabilidad = 'Habilidad';
   static const kCategoria = 'Categoria';
+  static const kAplicar = 'Aplicar';
+  static const kCancelar = 'Cancelar';
 
 //***************************TIPOS*********************************** */
   static const kAcero = 'Acero';
