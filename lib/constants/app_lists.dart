@@ -21,4 +21,25 @@ class AppLists {
     AppStrings.kVeneno,
     AppStrings.kVolador
   ];
+
+  static List<String> typesOfPokemon = [
+    'steel',
+    'water',
+    'bug',
+    'dragon',
+    'electric',
+    'ghost',
+    'fire',
+    'fairy',
+    'ice',
+    'fighting',
+    'normal',
+    'grass',
+    'psychic',
+    'rock',
+    'dark',
+    'ground',
+    'poison',
+    'flying'
+  ];
 }

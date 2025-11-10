@@ -11,48 +11,109 @@ class Pokedex extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pokemonAsyncValue = ref.watch(fetchPokemonFullProvider);
+    final asyncPokemons = ref.watch(fetchPokemonFullProvider);
+    return asyncPokemons.when(
+      data: (pokemons) {
+        final filters = ref.watch(filtersProvider); // List<bool>
+        final activeIndices = filters
+            .asMap()
+            .entries
+            .where((entry) => entry.value)
+            .map((entry) => entry.key)
+            .toList();
+        print('Active filters are $activeIndices');
 
-    print('Provider data  is $pokemonAsyncValue');
+        final activeTypes = activeIndices
+            .map((index) => AppLists.typesOfPokemon[index])
+            .toList();
 
-    final filters = ref.watch(filtersProvider);
-// 'filters' is List<bool>
-    final activeIndices = filters
-        .asMap()
-        .entries
-        .where((entry) => entry.value) // where filter is true
-        .map((entry) => entry.key) // extract index
-        .toList();
+        final filteredPokemons = pokemons.where((pokemon) {
+          if (activeTypes.isEmpty) return true;
+          return pokemon.types.any((type) => activeTypes.contains(type));
+        }).toList();
 
-    final activeTypes =
-        activeIndices.map((index) => AppLists.tipos[index]).toList();
+        print('Active types are $activeTypes');
 
-    // final filteredPokemons = pokemonAsyncValue.when(
-    //   data: (pokemons) {
-    //     if (activeTypes.isEmpty) {
-    //       // no filters selected; show all
-    //       return pokemons;
-    //     } else {
-    //       // filter pokemons whose types intersect with activeTypes
-    //       return pokemons
-    //           .where((p) => p.types.any((t) => activeTypes.contains(t)))
-    //           .toList();
-    //     }
-    //   },
-    //   loading: () => [],
-    //   error: (_, __) => [],
-    // );
-
-    return Scaffold(
-        body: pokemonAsyncValue.when(
-      data: (pokemons) => ListView.builder(
-        itemCount: pokemons.length,
-        itemBuilder: (context, index) => PokemonTile(
-          pokemon: pokemons[index],
-        ),
-      ),
+        return ListView.builder(
+          itemCount: filteredPokemons.length,
+          itemBuilder: (_, index) =>
+              PokemonTile(pokemon: filteredPokemons[index]),
+        );
+      },
       loading: () => CircularProgressIndicator(),
-      error: (err, stack) => Text('Error: $err'),
-    ));
+      error: (_, __) => Text('Error loading Pokémon'),
+    );
   }
 }
+
+
+
+// return filteredPokemonsAsync.when(
+//   data: (pokemons) {
+//     final activeTypes =
+//         ref.watch(filtersProvider).where((_, active) => active).keys.toList();
+
+//     final filteredPokemons = pokemons.where((pokemon) {
+//       if (activeTypes.isEmpty) return true;
+//       return pokemon.types.any((type) => activeTypes.contains(type));
+//     }).toList();
+
+//     return ListView.builder(
+//       itemCount: filteredPokemons.length,
+//       itemBuilder: (_, index) {
+//         return PokemonTile(pokemon: filteredPokemons[index]);
+//       },
+//     );
+//   },
+//   loading: () => CircularProgressIndicator(),
+//   error: (_, __) => Text('Error loading Pokémon'),
+// );
+
+
+
+// class Pokedex extends ConsumerWidget {
+//   const Pokedex({super.key});
+
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     final pokemons = ref.watch(fetchPokemonFullProvider);
+
+//     print('Provider data  is $pokemons');
+
+//     final filters = ref.watch(filtersProvider);
+// // 'filters' is List<bool>
+//     final activeIndices = filters
+//         .asMap()
+//         .entries
+//         .where((entry) => entry.value) // where filter is true
+//         .map((entry) => entry.key) // extract index
+//         .toList();
+
+//     print('Active filters are $activeIndices');
+
+//     final activeTypes =
+//         activeIndices.map((index) => AppLists.tipos[index]).toList();
+
+//     print('Active types are $activeTypes');
+
+//     final filteredPokemons = pokemons.where((pokemon) {
+//       // If no filters active, show all
+//       if (activeTypes.isEmpty) return true;
+
+//       // Otherwise, show Pokémon that have **at least one** type in activeTypes
+//       return pokemon.types.any((type) => activeTypes.contains(type));
+//     }).toList();
+
+//     return Scaffold(
+//         body: pokemonAsyncValue.when(
+//       data: (pokemons) => ListView.builder(
+//         itemCount: pokemons.length,
+//         itemBuilder: (context, index) => PokemonTile(
+//           pokemon: pokemons[index],
+//         ),
+//       ),
+//       loading: () => CircularProgressIndicator(),
+//       error: (err, stack) => Text('Error: $err'),
+//     ));
+//   }
+// }

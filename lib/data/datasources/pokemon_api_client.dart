@@ -6,7 +6,7 @@ class PokemonApiClient {
 
   Future<List<Map<String, dynamic>>> fetchPokemons() async {
     final response = await dio
-        .get('https://pokeapi.co/api/v2/pokemon?limit=50'); //was set to 1328
+        .get('https://pokeapi.co/api/v2/pokemon?limit=100'); //was set to 1328
     final results = response.data['results'];
 
     return List<Map<String, dynamic>>.from(
