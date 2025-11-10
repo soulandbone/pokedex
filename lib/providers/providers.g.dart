@@ -440,5 +440,43 @@ class _FetchPokemonSpeciesInfoProviderElement
   @override
   String get id => (origin as FetchPokemonSpeciesInfoProvider).id;
 }
+
+String _$pokemonFullRepositoryHash() =>
+    r'380338617fecb094f5a3a6712e8f99b57ddca722';
+
+/// See also [pokemonFullRepository].
+@ProviderFor(pokemonFullRepository)
+final pokemonFullRepositoryProvider =
+    AutoDisposeProvider<PokemonFullRepository>.internal(
+  pokemonFullRepository,
+  name: r'pokemonFullRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pokemonFullRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef PokemonFullRepositoryRef
+    = AutoDisposeProviderRef<PokemonFullRepository>;
+String _$fetchPokemonFullHash() => r'f5e766dbccca27c11e748228d3a01c971d6784cf';
+
+/// See also [fetchPokemonFull].
+@ProviderFor(fetchPokemonFull)
+final fetchPokemonFullProvider = FutureProvider<List<PokemonFull>>.internal(
+  fetchPokemonFull,
+  name: r'fetchPokemonFullProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$fetchPokemonFullHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef FetchPokemonFullRef = FutureProviderRef<List<PokemonFull>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

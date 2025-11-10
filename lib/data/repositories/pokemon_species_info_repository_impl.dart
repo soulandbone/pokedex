@@ -1,6 +1,6 @@
 import 'package:pokedex/data/datasources/pokemon_species_info_api_client.dart';
 import 'package:pokedex/domain/entities/pokemon_species_info/pokemon_species_info.dart';
-import 'package:pokedex/domain/pokemon_species_info.dart';
+import 'package:pokedex/domain/pokemon_species_info_repository.dart';
 
 class PokemonSpeciesInfoRepositoryImpl implements PokemonSpeciesInfoRepository {
   PokemonSpeciesInfoRepositoryImpl(this.speciesInfoApiClient);

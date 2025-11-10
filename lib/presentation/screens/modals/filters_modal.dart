@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/constants/app_lists.dart';
 import 'package:pokedex/constants/app_strings.dart';
+import 'package:pokedex/providers/filters.dart';
 
-class FiltersModal extends StatefulWidget {
+class FiltersModal extends ConsumerWidget {
   const FiltersModal({super.key});
 
   @override
-  State<FiltersModal> createState() => _FiltersModalState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final filters = ref.watch(filtersProvider);
 
-class _FiltersModalState extends State<FiltersModal> {
-  List<bool> filters = List.filled(18, false);
-
-  void toggleTile(int index) {
-    setState(() {
-      filters[index] = !filters[index];
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
@@ -48,7 +39,7 @@ class _FiltersModalState extends State<FiltersModal> {
                   title: Text(AppLists.tipos[index]),
                   value: filters[index],
                   onChanged: (value) {
-                    toggleTile(index);
+                    ref.read(filtersProvider.notifier).toggle(index);
                   })),
         ),
         Divider(),
@@ -68,8 +59,8 @@ class _FiltersModalState extends State<FiltersModal> {
             margin: EdgeInsets.symmetric(horizontal: 15),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.white,
               ),
               onPressed: () {},
               child: Text(AppStrings.kCancelar),
@@ -78,3 +69,11 @@ class _FiltersModalState extends State<FiltersModal> {
     );
   }
 }
+
+// List<bool> filters = List.filled(AppLists.tipos.length, false);
+
+  // void toggleTile(int index) {
+  //   setState(() {
+  //     filters[index] = !filters[index];
+  //   });
+  // }

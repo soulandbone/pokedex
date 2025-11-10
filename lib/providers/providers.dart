@@ -2,12 +2,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/data/datasources/pokemon_species_info_api_client.dart';
 
 import 'package:pokedex/data/datasources/pokemon_tile_data_api_client.dart';
+import 'package:pokedex/data/repositories/pokemon_full_repository_impl.dart';
 import 'package:pokedex/data/repositories/pokemon_species_info_repository_impl.dart';
 import 'package:pokedex/data/repositories/pokemon_tile_data_repository.impl.dart';
+import 'package:pokedex/domain/entities/pokemon_full/pokemon_full.dart';
 import 'package:pokedex/domain/entities/pokemon_species_info/pokemon_species_info.dart';
 
 import 'package:pokedex/domain/entities/pokemon_tile_data/pokemon_tile_data.dart';
-import 'package:pokedex/domain/pokemon_species_info.dart';
+import 'package:pokedex/domain/pokemon_full_repository.dart';
+import 'package:pokedex/domain/pokemon_species_info_repository.dart';
 
 import 'package:pokedex/domain/pokemon_tile_data_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -85,4 +88,18 @@ Future<PokemonSpeciesInfo> fetchPokemonSpeciesInfo(Ref ref, String id) async {
   //fetchPokemonDetailsRef
   final repository = ref.read(pokemonSpeciesInfoRepositoryProvider);
   return repository.fetchPokemonSpeciesInfo(id);
+}
+
+@riverpod
+PokemonFullRepository pokemonFullRepository(Ref ref) {
+  //PokemonRepositoryRef
+  return PokemonFullRepositoryImpl(ref.read(pokemonApiClientProvider),
+      ref.read(pokemonTileDataApiClientProvider));
+}
+
+@Riverpod(keepAlive: true)
+Future<List<PokemonFull>> fetchPokemonFull(Ref ref) async {
+  //fetchPokemonDetailsRef
+  final repository = ref.read(pokemonFullRepositoryProvider);
+  return repository.fetchPokemonFullList();
 }
