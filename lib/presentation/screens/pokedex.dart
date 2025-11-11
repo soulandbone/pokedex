@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/constants/app_lists.dart';
+import 'package:pokedex/presentation/screens/error_screen.dart';
 import 'package:pokedex/presentation/screens/modals/filters_modal.dart';
 
 import 'package:pokedex/presentation/widgets/pokemon_tile.dart';
@@ -128,7 +129,7 @@ class Pokedex extends ConsumerWidget {
             ));
       },
       loading: () => Center(child: CircularProgressIndicator()),
-      error: (_, __) => Text('Error loading Pokémon'),
+      error: (_, __) => ErrorScreen(),
     );
   }
 }
