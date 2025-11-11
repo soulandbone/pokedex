@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/constants/app_strings.dart';
 
-class SearchBoxPokemon extends StatelessWidget {
-  final TextEditingController controller;
-  final void Function(String) onChanged;
+class SearchBoxPokemon extends StatefulWidget {
+  const SearchBoxPokemon({
+    super.key,
+  });
 
-  const SearchBoxPokemon(
-      {super.key, required this.controller, required this.onChanged});
+  @override
+  State<SearchBoxPokemon> createState() => _SearchBoxPokemonState();
+}
+
+class _SearchBoxPokemonState extends State<SearchBoxPokemon> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose(); // clean up
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +40,8 @@ class SearchBoxPokemon extends StatelessWidget {
           SizedBox(width: 8),
           Expanded(
             child: TextField(
-              controller: controller,
-              onChanged: onChanged,
+              controller: _controller,
+              onChanged: (value) {},
               decoration: InputDecoration(
                 hintText: AppStrings.kBuscarPokemon,
                 border: InputBorder.none,

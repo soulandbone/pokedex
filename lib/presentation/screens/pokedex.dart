@@ -15,9 +15,6 @@ class Pokedex extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final TextEditingController searchController = TextEditingController();
-    String searchTerm = '';
-
     final asyncPokemons =
         ref.watch(FetchPokemonFullProvider(offSet: 0, limit: 200));
 
@@ -64,11 +61,7 @@ class Pokedex extends ConsumerWidget {
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: Row(
                     children: [
-                      Expanded(
-                        child: SearchBoxPokemon(
-                            controller: searchController,
-                            onChanged: (value) {}),
-                      ),
+                      Expanded(child: SearchBoxPokemon()),
                       SizedBox(
                         width: 30,
                       ),
