@@ -5,6 +5,7 @@ import 'package:pokedex/constants/app_lists.dart';
 import 'package:pokedex/presentation/screens/modals/filters_modal.dart';
 
 import 'package:pokedex/presentation/widgets/pokemon_tile.dart';
+import 'package:pokedex/presentation/widgets/searchbox_pokemon.dart';
 import 'package:pokedex/providers/filters.dart';
 import 'package:pokedex/providers/providers.dart';
 
@@ -13,6 +14,9 @@ class Pokedex extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final TextEditingController searchController = TextEditingController();
+    String searchTerm = '';
+
     final asyncPokemons =
         ref.watch(FetchPokemonFullProvider(offSet: 0, limit: 200));
 
@@ -39,7 +43,7 @@ class Pokedex extends ConsumerWidget {
           return pokemon.types.any((type) => activeTypes.contains(type));
         }).toList();
 
-        print('Active types are $activeTypes');
+        // print('Active types are $activeTypes');
 
         return Scaffold(
             appBar: AppBar(
@@ -55,6 +59,29 @@ class Pokedex extends ConsumerWidget {
             ),
             body: Column(
               children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SearchBoxPokemon(
+                            controller: searchController,
+                            onChanged: (value) {}),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey, width: 1)),
+                        child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.search)),
+                      )
+                    ],
+                  ),
+                ),
                 containsFilter
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -67,7 +94,10 @@ class Pokedex extends ConsumerWidget {
                             ),
                             Text(
                               '${filteredPokemons.length} resultados ',
-                              style: GoogleFonts.montserrat(fontSize: 14),
+                              style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                  color: Color.fromRGBO(158, 158, 158, 1)),
                             ),
                             GestureDetector(
                                 onTap: () {

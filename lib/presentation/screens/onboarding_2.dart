@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/constants/app_colors.dart';
 import 'package:pokedex/constants/app_strings.dart';
+import 'package:pokedex/presentation/screens/home_page.dart';
 import 'package:pokedex/presentation/widgets/dot_line_indicator.dart';
 
 class OnBoarding2 extends StatelessWidget {
@@ -54,7 +55,10 @@ class OnBoarding2 extends StatelessWidget {
                   foregroundColor: AppColors.kTextButton,
                   backgroundColor: AppColors.kBlueBackGroundButton,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                },
                 child: Text(
                   AppStrings.kEmpecemos,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pokedex/constants/app_colors.dart';
 import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/constants/app_strings.dart';
 import 'package:pokedex/domain/entities/pokemon_full/pokemon_full.dart';
 import 'package:pokedex/helpers/capitalizer.dart';
+import 'package:pokedex/helpers/category_converter.dart';
 import 'package:pokedex/helpers/description_formatter.dart';
 import 'package:pokedex/helpers/number_formatter.dart';
 import 'package:pokedex/helpers/string_to_icon_mapper.dart';
@@ -143,7 +143,7 @@ class PokemonInformation extends ConsumerWidget {
                             child: LabelValue(
                               textLabel: AppStrings.kCategoria.toUpperCase(),
                               icon: Icons.category_outlined,
-                              value: data.genus,
+                              value: categoryConverter(data.genus),
                             ),
                           ),
                           Expanded(

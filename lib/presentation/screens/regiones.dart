@@ -6,7 +6,7 @@ class Regiones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Image.asset('assets/large_icons/grass.png')),
+      body: Center(child: Image.asset('assets/regions_pokemon.jpg')),
     );
   }
 }
