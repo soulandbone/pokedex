@@ -158,20 +158,26 @@ class PokemonInformation extends ConsumerWidget {
                       SizedBox(height: 30),
                       Center(child: Text('GENERO')),
                       SizedBox(height: 30),
-                      ColoredLine(
-                          backgroundColor: Colors.red,
-                          fillColor: Colors.blue,
-                          genderRate: data.genderRate),
-                      SizedBox(
-                        height: 120,
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        child: ColoredLine(
+                            backgroundColor: Colors.red,
+                            fillColor: Colors.blue,
+                            genderRate: data.genderRate),
                       ),
-                      Text(
-                        'Debilidades',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 32),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          'Debilidades',
+                          style: GoogleFonts.poppins(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
                       ),
                       WeaknessesGrid(
-                          types: ['grass', 'poison', 'flying', 'fighting']),
+                          types: ['fire', 'psychic', 'ice', 'flying']),
                       SizedBox(
                         height: 100,
                       )

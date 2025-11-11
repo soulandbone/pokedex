@@ -60,7 +60,7 @@ class Pokedex extends ConsumerWidget {
             body: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: Row(
                     children: [
                       Expanded(

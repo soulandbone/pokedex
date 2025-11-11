@@ -12,6 +12,7 @@ class WeaknessesGrid extends StatelessWidget {
       shrinkWrap: true, // Constrain height to content
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: 3,
         crossAxisCount: 3, // Number of columns
         crossAxisSpacing: 5, // Horizontal spacing between grid items
         mainAxisSpacing: 0, // Vertical spacing between grid items
@@ -19,11 +20,12 @@ class WeaknessesGrid extends StatelessWidget {
       itemCount: types.length, // The number of icons you want to display
       itemBuilder: (context, index) {
         final typeName = types[index];
-        return Container(
-          color: Colors.red,
-          width: 10,
-          height: 10,
-          child: AppMaps.typeIconMapSmall[typeName] ?? SizedBox(),
+        return Center(
+          child: SizedBox(
+            height: 90,
+            width: 90,
+            child: AppMaps.typeIconMapSmall[typeName] ?? SizedBox(),
+          ),
         );
       },
     );
