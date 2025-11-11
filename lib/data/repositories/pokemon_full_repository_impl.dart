@@ -10,8 +10,10 @@ class PokemonFullRepositoryImpl implements PokemonFullRepository {
   final PokemonTileDataApiClient detailsApiClient;
 
   @override
-  Future<List<PokemonFull>> fetchPokemonFullList() async {
-    final listResults = await apiClient.fetchPokemons();
+  Future<List<PokemonFull>> fetchPokemonFullList(
+      {required int limit, required int offset}) async {
+    final listResults =
+        await apiClient.fetchPokemons(offset: offset, limit: limit);
 
     final List<Future<PokemonFull>> fullDataFutures =
         listResults.map((result) async {

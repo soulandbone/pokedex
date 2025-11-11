@@ -98,8 +98,9 @@ PokemonFullRepository pokemonFullRepository(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
-Future<List<PokemonFull>> fetchPokemonFull(Ref ref) async {
+Future<List<PokemonFull>> fetchPokemonFull(Ref ref,
+    {required int offSet, required int limit}) async {
   //fetchPokemonDetailsRef
   final repository = ref.read(pokemonFullRepositoryProvider);
-  return repository.fetchPokemonFullList();
+  return repository.fetchPokemonFullList(limit: limit, offset: offSet);
 }

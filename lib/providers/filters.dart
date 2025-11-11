@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'filters.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Filters extends _$Filters {
   @override
   List<bool> build() => List.filled(AppLists.tipos.length, false);

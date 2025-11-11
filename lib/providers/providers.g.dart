@@ -461,22 +461,151 @@ final pokemonFullRepositoryProvider =
 // ignore: unused_element
 typedef PokemonFullRepositoryRef
     = AutoDisposeProviderRef<PokemonFullRepository>;
-String _$fetchPokemonFullHash() => r'f5e766dbccca27c11e748228d3a01c971d6784cf';
+String _$fetchPokemonFullHash() => r'10c6f686171b472ef19d1815fa01859f9b9e1cd6';
 
 /// See also [fetchPokemonFull].
 @ProviderFor(fetchPokemonFull)
-final fetchPokemonFullProvider = FutureProvider<List<PokemonFull>>.internal(
-  fetchPokemonFull,
-  name: r'fetchPokemonFullProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$fetchPokemonFullHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const fetchPokemonFullProvider = FetchPokemonFullFamily();
+
+/// See also [fetchPokemonFull].
+class FetchPokemonFullFamily extends Family<AsyncValue<List<PokemonFull>>> {
+  /// See also [fetchPokemonFull].
+  const FetchPokemonFullFamily();
+
+  /// See also [fetchPokemonFull].
+  FetchPokemonFullProvider call({
+    required int offSet,
+    required int limit,
+  }) {
+    return FetchPokemonFullProvider(
+      offSet: offSet,
+      limit: limit,
+    );
+  }
+
+  @override
+  FetchPokemonFullProvider getProviderOverride(
+    covariant FetchPokemonFullProvider provider,
+  ) {
+    return call(
+      offSet: provider.offSet,
+      limit: provider.limit,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchPokemonFullProvider';
+}
+
+/// See also [fetchPokemonFull].
+class FetchPokemonFullProvider extends FutureProvider<List<PokemonFull>> {
+  /// See also [fetchPokemonFull].
+  FetchPokemonFullProvider({
+    required int offSet,
+    required int limit,
+  }) : this._internal(
+          (ref) => fetchPokemonFull(
+            ref as FetchPokemonFullRef,
+            offSet: offSet,
+            limit: limit,
+          ),
+          from: fetchPokemonFullProvider,
+          name: r'fetchPokemonFullProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$fetchPokemonFullHash,
+          dependencies: FetchPokemonFullFamily._dependencies,
+          allTransitiveDependencies:
+              FetchPokemonFullFamily._allTransitiveDependencies,
+          offSet: offSet,
+          limit: limit,
+        );
+
+  FetchPokemonFullProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.offSet,
+    required this.limit,
+  }) : super.internal();
+
+  final int offSet;
+  final int limit;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<PokemonFull>> Function(FetchPokemonFullRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchPokemonFullProvider._internal(
+        (ref) => create(ref as FetchPokemonFullRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        offSet: offSet,
+        limit: limit,
+      ),
+    );
+  }
+
+  @override
+  FutureProviderElement<List<PokemonFull>> createElement() {
+    return _FetchPokemonFullProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FetchPokemonFullProvider &&
+        other.offSet == offSet &&
+        other.limit == limit;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, offSet.hashCode);
+    hash = _SystemHash.combine(hash, limit.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef FetchPokemonFullRef = FutureProviderRef<List<PokemonFull>>;
+mixin FetchPokemonFullRef on FutureProviderRef<List<PokemonFull>> {
+  /// The parameter `offSet` of this provider.
+  int get offSet;
+
+  /// The parameter `limit` of this provider.
+  int get limit;
+}
+
+class _FetchPokemonFullProviderElement
+    extends FutureProviderElement<List<PokemonFull>> with FetchPokemonFullRef {
+  _FetchPokemonFullProviderElement(super.provider);
+
+  @override
+  int get offSet => (origin as FetchPokemonFullProvider).offSet;
+  @override
+  int get limit => (origin as FetchPokemonFullProvider).limit;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

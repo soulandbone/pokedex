@@ -9,7 +9,8 @@ class Favoritos extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final allPokemons = ref.watch(fetchPokemonFullProvider);
+    final allPokemons =
+        ref.watch(fetchPokemonFullProvider(limit: 100, offSet: 0));
     final favorites = ref.watch(favoritesProvider);
     final filteredPokemons = allPokemons.when(
       data: (allPokemons) =>

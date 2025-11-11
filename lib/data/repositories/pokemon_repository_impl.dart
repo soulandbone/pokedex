@@ -9,7 +9,7 @@ class PokemonRepositoryImpl implements PokemonRepository {
 
   @override
   Future<List<Pokemon>> fetchPokemons() async {
-    final results = await apiClient.fetchPokemons();
+    final results = await apiClient.fetchPokemons(offset: 0, limit: 1328);
 
     return results.map((json) {
       return Pokemon.fromJson(json);
