@@ -68,7 +68,7 @@ class PokemonTile extends ConsumerWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 20,
                       ),
                       SizedBox(
                         height: 20,
@@ -88,29 +88,27 @@ class PokemonTile extends ConsumerWidget {
                   color: AppMaps.typeColorMap[pokemon.types[0]],
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Center(
-                  child: Stack(
-                    children: [
-                      AppMaps.typeIconMapLarge[pokemon.types[0]]!,
-                      Image.network(pokemon.spriteUrl),
-                      Positioned(
-                          right: 5,
-                          top: 10,
-                          child: GestureDetector(
-                            onTap: () {
-                              ref
-                                  .read(favoritesProvider.notifier)
-                                  .toggle(pokemon.id);
-                            },
-                            child: Icon(
-                              isFav
-                                  ? Icons.favorite
-                                  : Icons.favorite_border_outlined,
-                              color: isFav ? Colors.red : Colors.black,
-                            ),
-                          )),
-                    ],
-                  ),
+                child: Stack(
+                  children: [
+                    Center(child: AppMaps.typeIconMapLarge[pokemon.types[0]]!),
+                    Center(child: Image.network(pokemon.spriteUrl)),
+                    Positioned(
+                        right: 5,
+                        top: 10,
+                        child: GestureDetector(
+                          onTap: () {
+                            ref
+                                .read(favoritesProvider.notifier)
+                                .toggle(pokemon.id);
+                          },
+                          child: Icon(
+                            isFav
+                                ? Icons.favorite
+                                : Icons.favorite_border_outlined,
+                            color: isFav ? Colors.red : Colors.black,
+                          ),
+                        )),
+                  ],
                 ),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/presentation/screens/favorites_empty.dart';
 import 'package:pokedex/presentation/widgets/pokemon_tile.dart';
 import 'package:pokedex/providers/favorites.dart';
 import 'package:pokedex/providers/providers.dart';
@@ -19,18 +20,20 @@ class Favoritos extends ConsumerWidget {
       error: (e, st) => [],
     );
 
-    return ListView.builder(
-      itemCount: filteredPokemons.length,
-      itemBuilder: (context, index) {
-        final pokemon = filteredPokemons[index];
-        print('${pokemon.id}');
-        return Dismissible(
-            onDismissed: (direction) {
-              ref.read(favoritesProvider.notifier).toggle(pokemon.id);
+    return filteredPokemons.isEmpty
+        ? FavoritesEmpty()
+        : ListView.builder(
+            itemCount: filteredPokemons.length,
+            itemBuilder: (context, index) {
+              final pokemon = filteredPokemons[index];
+              print('${pokemon.id}');
+              return Dismissible(
+                  onDismissed: (direction) {
+                    ref.read(favoritesProvider.notifier).toggle(pokemon.id);
+                  },
+                  key: ValueKey(pokemon.id),
+                  child: PokemonTile(pokemon: pokemon));
             },
-            key: ValueKey(pokemon.id),
-            child: PokemonTile(pokemon: pokemon));
-      },
-    );
+          );
   }
 }
