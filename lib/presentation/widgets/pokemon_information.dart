@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/constants/app_colors.dart';
 import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/constants/app_strings.dart';
@@ -88,8 +89,8 @@ class PokemonInformation extends ConsumerWidget {
                             EdgeInsets.symmetric(horizontal: marginHorizontal),
                         child: Text(
                           capitalizer(pokemonInfo.name),
-                          style: TextStyle(
-                              fontSize: 32, fontWeight: FontWeight.bold),
+                          style: GoogleFonts.poppins(
+                              fontSize: 32, fontWeight: FontWeight.w500),
                         ),
                       ),
                       Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/constants/app_lists.dart';
 import 'package:pokedex/presentation/screens/modals/filters_modal.dart';
 
@@ -14,6 +15,9 @@ class Pokedex extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncPokemons =
         ref.watch(FetchPokemonFullProvider(offSet: 0, limit: 200));
+
+    final filters = ref.watch(filtersProvider);
+    bool containsFilter = filters.contains(true);
 
     return asyncPokemons.when(
       data: (pokemons) {
@@ -49,10 +53,48 @@ class Pokedex extends ConsumerWidget {
                     icon: Icon(Icons.filter_alt))
               ],
             ),
-            body: ListView.builder(
-              itemCount: filteredPokemons.length,
-              itemBuilder: (_, index) =>
-                  PokemonTile(pokemon: filteredPokemons[index]),
+            body: Column(
+              children: [
+                containsFilter
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Se han encontrado ',
+                              style: GoogleFonts.montserrat(fontSize: 14),
+                            ),
+                            Text(
+                              '${filteredPokemons.length} resultados ',
+                              style: GoogleFonts.montserrat(fontSize: 14),
+                            ),
+                            GestureDetector(
+                                onTap: () {
+                                  ref
+                                      .read(filtersProvider.notifier)
+                                      .clearFilters();
+                                },
+                                child: Text(
+                                  'Borrar filtro',
+                                  style: GoogleFonts.montserrat(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.blue),
+                                ))
+                          ],
+                        ),
+                      )
+                    : SizedBox(),
+                SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                    child: ListView.builder(
+                  itemCount: filteredPokemons.length,
+                  itemBuilder: (_, index) =>
+                      PokemonTile(pokemon: filteredPokemons[index]),
+                ))
+              ],
             ));
       },
       loading: () => Center(child: CircularProgressIndicator()),
@@ -60,6 +102,7 @@ class Pokedex extends ConsumerWidget {
     );
   }
 }
+
 
 
 
