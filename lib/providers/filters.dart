@@ -15,6 +15,11 @@ class Filters extends _$Filters {
     state = newFilters;
   }
 
+  void clearFilters() {
+    final newFilters = List.filled(AppLists.tipos.length, false);
+    state = newFilters;
+  }
+
   List<String> get activeTypes {
     final indices = getActiveIndices(state);
     return getActiveTypes(indices, AppLists.tipos);

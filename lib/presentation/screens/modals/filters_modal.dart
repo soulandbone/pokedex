@@ -51,7 +51,9 @@ class FiltersModal extends ConsumerWidget {
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.blue,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               child: Text(AppStrings.kAplicar),
             )),
         Container(
@@ -62,7 +64,10 @@ class FiltersModal extends ConsumerWidget {
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                ref.read(filtersProvider.notifier).clearFilters();
+                Navigator.of(context).pop();
+              },
               child: Text(AppStrings.kCancelar),
             )),
       ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/constants/app_lists.dart';
+import 'package:pokedex/presentation/screens/modals/filters_modal.dart';
 
 import 'package:pokedex/presentation/widgets/pokemon_tile.dart';
 import 'package:pokedex/providers/filters.dart';
@@ -36,11 +37,23 @@ class Pokedex extends ConsumerWidget {
 
         print('Active types are $activeTypes');
 
-        return ListView.builder(
-          itemCount: filteredPokemons.length,
-          itemBuilder: (_, index) =>
-              PokemonTile(pokemon: filteredPokemons[index]),
-        );
+        return Scaffold(
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (context) => FiltersModal());
+                    },
+                    icon: Icon(Icons.filter_alt))
+              ],
+            ),
+            body: ListView.builder(
+              itemCount: filteredPokemons.length,
+              itemBuilder: (_, index) =>
+                  PokemonTile(pokemon: filteredPokemons[index]),
+            ));
       },
       loading: () => Center(child: CircularProgressIndicator()),
       error: (_, __) => Text('Error loading Pokémon'),

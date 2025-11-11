@@ -37,7 +37,7 @@ class PokemonInformation extends ConsumerWidget {
                         child: Stack(
                           children: [
                             SizedBox(
-                              height: 400,
+                              height: 350,
                               width: double.infinity,
                               child:
                                   CustomPaint(painter: CustomTopBackground()),
