@@ -13,6 +13,7 @@ class PokemonFull with _$PokemonFull {
     required int weight,
     required int height,
     required List<String> types,
+    required List<String> abilities,
   }) = _PokemonFull;
 
   factory PokemonFull.fromJson(Map<String, dynamic> json) =>
@@ -23,8 +24,12 @@ Map<String, dynamic> _getJsonAtPath(Map<String, dynamic> json) {
   final spriteUrl = json['sprites']['front_default'] as String? ?? '';
 
   final typesJson = json['types'] as List<dynamic>;
+  final abilitiesJson = json['abilities'] as List<dynamic>;
   final types = typesJson
       .map((t) => (t as Map<String, dynamic>)['type']['name'] as String)
+      .toList();
+  final abilities = abilitiesJson
+      .map((t) => (t as Map<String, dynamic>)['ability']['name'] as String)
       .toList();
 
   return {
@@ -35,6 +40,7 @@ Map<String, dynamic> _getJsonAtPath(Map<String, dynamic> json) {
     'weight': json['weight'],
     'height': json['height'],
     'types': types,
+    'abilities': abilities
   };
 }
 

@@ -6,7 +6,7 @@ part of 'pokemon_paginated.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pokemonPaginatedHash() => r'43bd28990fcf8550060042bcdae738427f85c4f5';
+String _$pokemonPaginatedHash() => r'2cc5c1b08e90e9e3b7d88dcea0b373ff503692a1';
 
 /// See also [PokemonPaginated].
 @ProviderFor(PokemonPaginated)

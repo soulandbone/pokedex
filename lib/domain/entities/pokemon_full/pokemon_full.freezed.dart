@@ -27,6 +27,7 @@ mixin _$PokemonFull {
   int get weight => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
   List<String> get types => throw _privateConstructorUsedError;
+  List<String> get abilities => throw _privateConstructorUsedError;
 
   /// Serializes this PokemonFull to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,7 +52,8 @@ abstract class $PokemonFullCopyWith<$Res> {
       String spriteUrl,
       int weight,
       int height,
-      List<String> types});
+      List<String> types,
+      List<String> abilities});
 }
 
 /// @nodoc
@@ -76,6 +78,7 @@ class _$PokemonFullCopyWithImpl<$Res, $Val extends PokemonFull>
     Object? weight = null,
     Object? height = null,
     Object? types = null,
+    Object? abilities = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -106,6 +109,10 @@ class _$PokemonFullCopyWithImpl<$Res, $Val extends PokemonFull>
           ? _value.types
           : types // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      abilities: null == abilities
+          ? _value.abilities
+          : abilities // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -125,7 +132,8 @@ abstract class _$$PokemonFullImplCopyWith<$Res>
       String spriteUrl,
       int weight,
       int height,
-      List<String> types});
+      List<String> types,
+      List<String> abilities});
 }
 
 /// @nodoc
@@ -148,6 +156,7 @@ class __$$PokemonFullImplCopyWithImpl<$Res>
     Object? weight = null,
     Object? height = null,
     Object? types = null,
+    Object? abilities = null,
   }) {
     return _then(_$PokemonFullImpl(
       id: null == id
@@ -178,6 +187,10 @@ class __$$PokemonFullImplCopyWithImpl<$Res>
           ? _value._types
           : types // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      abilities: null == abilities
+          ? _value._abilities
+          : abilities // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -192,8 +205,10 @@ class _$PokemonFullImpl implements _PokemonFull {
       required this.spriteUrl,
       required this.weight,
       required this.height,
-      required final List<String> types})
-      : _types = types;
+      required final List<String> types,
+      required final List<String> abilities})
+      : _types = types,
+        _abilities = abilities;
 
   factory _$PokemonFullImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonFullImplFromJson(json);
@@ -218,9 +233,17 @@ class _$PokemonFullImpl implements _PokemonFull {
     return EqualUnmodifiableListView(_types);
   }
 
+  final List<String> _abilities;
+  @override
+  List<String> get abilities {
+    if (_abilities is EqualUnmodifiableListView) return _abilities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_abilities);
+  }
+
   @override
   String toString() {
-    return 'PokemonFull(id: $id, name: $name, url: $url, spriteUrl: $spriteUrl, weight: $weight, height: $height, types: $types)';
+    return 'PokemonFull(id: $id, name: $name, url: $url, spriteUrl: $spriteUrl, weight: $weight, height: $height, types: $types, abilities: $abilities)';
   }
 
   @override
@@ -235,13 +258,23 @@ class _$PokemonFullImpl implements _PokemonFull {
                 other.spriteUrl == spriteUrl) &&
             (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.height, height) || other.height == height) &&
-            const DeepCollectionEquality().equals(other._types, _types));
+            const DeepCollectionEquality().equals(other._types, _types) &&
+            const DeepCollectionEquality()
+                .equals(other._abilities, _abilities));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, url, spriteUrl, weight,
-      height, const DeepCollectionEquality().hash(_types));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      url,
+      spriteUrl,
+      weight,
+      height,
+      const DeepCollectionEquality().hash(_types),
+      const DeepCollectionEquality().hash(_abilities));
 
   /// Create a copy of PokemonFull
   /// with the given fields replaced by the non-null parameter values.
@@ -267,7 +300,8 @@ abstract class _PokemonFull implements PokemonFull {
       required final String spriteUrl,
       required final int weight,
       required final int height,
-      required final List<String> types}) = _$PokemonFullImpl;
+      required final List<String> types,
+      required final List<String> abilities}) = _$PokemonFullImpl;
 
   factory _PokemonFull.fromJson(Map<String, dynamic> json) =
       _$PokemonFullImpl.fromJson;
@@ -286,6 +320,8 @@ abstract class _PokemonFull implements PokemonFull {
   int get height;
   @override
   List<String> get types;
+  @override
+  List<String> get abilities;
 
   /// Create a copy of PokemonFull
   /// with the given fields replaced by the non-null parameter values.

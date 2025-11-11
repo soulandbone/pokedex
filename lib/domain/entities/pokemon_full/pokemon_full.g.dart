@@ -15,6 +15,8 @@ _$PokemonFullImpl _$$PokemonFullImplFromJson(Map<String, dynamic> json) =>
       weight: (json['weight'] as num).toInt(),
       height: (json['height'] as num).toInt(),
       types: (json['types'] as List<dynamic>).map((e) => e as String).toList(),
+      abilities:
+          (json['abilities'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$PokemonFullImplToJson(_$PokemonFullImpl instance) =>
@@ -26,4 +28,5 @@ Map<String, dynamic> _$$PokemonFullImplToJson(_$PokemonFullImpl instance) =>
       'weight': instance.weight,
       'height': instance.height,
       'types': instance.types,
+      'abilities': instance.abilities,
     };
