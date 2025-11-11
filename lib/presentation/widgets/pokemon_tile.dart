@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/constants/app_colors.dart';
 import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/domain/entities/pokemon_full/pokemon_full.dart';
 import 'package:pokedex/helpers/capitalizer.dart';
@@ -7,7 +8,6 @@ import 'package:pokedex/helpers/number_formatter.dart';
 import 'package:pokedex/helpers/string_to_icon_mapper.dart';
 import 'package:pokedex/presentation/widgets/pokemon_information.dart';
 import 'package:pokedex/providers/favorites.dart';
-import 'package:pokedex/providers/providers.dart';
 
 class PokemonTile extends ConsumerWidget {
   const PokemonTile({required this.pokemon, super.key});
@@ -93,21 +93,30 @@ class PokemonTile extends ConsumerWidget {
                     Center(child: AppMaps.typeIconMapLarge[pokemon.types[0]]!),
                     Center(child: Image.network(pokemon.spriteUrl)),
                     Positioned(
-                        right: 5,
+                        right: 8,
                         top: 10,
                         child: GestureDetector(
-                          onTap: () {
-                            ref
-                                .read(favoritesProvider.notifier)
-                                .toggle(pokemon.id);
-                          },
-                          child: Icon(
-                            isFav
-                                ? Icons.favorite
-                                : Icons.favorite_border_outlined,
-                            color: isFav ? Colors.red : Colors.black,
-                          ),
-                        )),
+                            onTap: () {
+                              ref
+                                  .read(favoritesProvider.notifier)
+                                  .toggle(pokemon.id);
+                            },
+                            child: CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Colors.white,
+                              child: CircleAvatar(
+                                radius: 16, // Adjust the radius as needed
+                                backgroundColor: AppColors
+                                    .kLikeCircleBackground, // Background color of the circle
+                                child: Icon(
+                                  size: 20,
+                                  isFav
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  color: isFav ? Colors.red : Colors.white,
+                                ),
+                              ),
+                            ))),
                   ],
                 ),
               ),

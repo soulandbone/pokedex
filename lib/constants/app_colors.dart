@@ -36,4 +36,5 @@ class AppColors {
   static const kCircleProgressIndicator = Color.fromRGBO(69, 101, 183, 0.25);
   static const kTextButton = Color.fromRGBO(250, 250, 250, 1);
   static const kBlueBackGroundButton = Color.fromRGBO(30, 136, 229, 1);
+  static const kLikeCircleBackground = Color.fromRGBO(116, 116, 116, 0.6);
 }
