@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomTopBackground extends CustomPainter {
+  CustomTopBackground({required this.color});
+  final Color? color;
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = Colors.green;
+    final paint = Paint()..color = color ?? Colors.grey;
 
     // Define the path for the custom shape
     final path = Path()

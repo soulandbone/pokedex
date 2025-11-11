@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(AppStrings.kTitle),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 12,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blue,
         currentIndex: _selectedIndex,

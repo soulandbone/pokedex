@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/constants/app_colors.dart';
 import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/constants/app_strings.dart';
 import 'package:pokedex/domain/entities/pokemon_full/pokemon_full.dart';
@@ -12,6 +13,7 @@ import 'package:pokedex/presentation/widgets/colored_line.dart';
 import 'package:pokedex/presentation/widgets/custom_top_background.dart';
 import 'package:pokedex/presentation/widgets/label_value.dart';
 import 'package:pokedex/presentation/widgets/weaknesses_grid.dart';
+import 'package:pokedex/providers/favorites.dart';
 import 'package:pokedex/providers/providers.dart';
 
 class PokemonInformation extends ConsumerWidget {
@@ -21,12 +23,13 @@ class PokemonInformation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    double marginHorizontal = 10;
+    final isFav = ref.watch(favoritesProvider).contains(pokemonInfo.id);
     final speciesInfo =
         ref.watch(fetchPokemonSpeciesInfoProvider(pokemonInfo.id));
     return Scaffold(
         appBar: AppBar(
-          title: Text(pokemonInfo.name),
-          actions: [Icon(Icons.favorite_border_outlined)],
+          title: Text(capitalizer(pokemonInfo.name)),
         ),
         body: speciesInfo.when(
             data: (data) => SingleChildScrollView(
@@ -39,8 +42,10 @@ class PokemonInformation extends ConsumerWidget {
                             SizedBox(
                               height: 350,
                               width: double.infinity,
-                              child:
-                                  CustomPaint(painter: CustomTopBackground()),
+                              child: CustomPaint(
+                                  painter: CustomTopBackground(
+                                      color: AppMaps
+                                          .typeColorMap[pokemonInfo.types[0]])),
                             ),
                             Center(
                                 child: (AppMaps
@@ -57,20 +62,51 @@ class PokemonInformation extends ConsumerWidget {
                                     pokemonInfo.spriteUrl,
                                   ),
                                 ))),
+                            Positioned(
+                              right: 30,
+                              top: 30,
+                              child: GestureDetector(
+                                onTap: () {
+                                  ref
+                                      .read(favoritesProvider.notifier)
+                                      .toggle(pokemonInfo.id);
+                                },
+                                child: Icon(
+                                  size: 40,
+                                  isFav
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  color: isFav ? Colors.red : Colors.white,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      Text(
-                        capitalizer(pokemonInfo.name),
-                        style: TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: marginHorizontal),
+                        child: Text(
+                          capitalizer(pokemonInfo.name),
+                          style: TextStyle(
+                              fontSize: 32, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      Text('N° ${numberFormatter(pokemonInfo.id)}',
-                          style: TextStyle(fontSize: 22)),
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: marginHorizontal),
+                        child: Text('N° ${numberFormatter(pokemonInfo.id)}',
+                            style: TextStyle(fontSize: 22)),
+                      ),
                       SizedBox(height: 10),
-                      Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: mapStringToIconsMedium(pokemonInfo.types)),
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: marginHorizontal),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children:
+                                mapStringToIconsMedium(pokemonInfo.types)),
+                      ),
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -125,7 +161,9 @@ class PokemonInformation extends ConsumerWidget {
                           backgroundColor: Colors.red,
                           fillColor: Colors.blue,
                           genderRate: data.genderRate),
-                      Divider(),
+                      SizedBox(
+                        height: 120,
+                      ),
                       Text(
                         'Debilidades',
                         style: TextStyle(
