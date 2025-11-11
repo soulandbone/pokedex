@@ -105,7 +105,7 @@ class PokemonInformation extends ConsumerWidget {
                             child: LabelValue(
                               textLabel: AppStrings.kCategoria.toUpperCase(),
                               icon: Icons.category_outlined,
-                              value: 'SEMILLA',
+                              value: data.genus,
                             ),
                           ),
                           Expanded(
@@ -123,7 +123,7 @@ class PokemonInformation extends ConsumerWidget {
                       ColoredLine(
                           backgroundColor: Colors.red,
                           fillColor: Colors.blue,
-                          genderRate: 4),
+                          genderRate: data.genderRate),
                       Divider(),
                       Text(
                         'Debilidades',

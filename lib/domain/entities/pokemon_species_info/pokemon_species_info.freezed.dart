@@ -22,6 +22,7 @@ PokemonSpeciesInfo _$PokemonSpeciesInfoFromJson(Map<String, dynamic> json) {
 mixin _$PokemonSpeciesInfo {
   int get genderRate => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  String get genus => throw _privateConstructorUsedError;
 
   /// Serializes this PokemonSpeciesInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +40,7 @@ abstract class $PokemonSpeciesInfoCopyWith<$Res> {
           PokemonSpeciesInfo value, $Res Function(PokemonSpeciesInfo) then) =
       _$PokemonSpeciesInfoCopyWithImpl<$Res, PokemonSpeciesInfo>;
   @useResult
-  $Res call({int genderRate, String description});
+  $Res call({int genderRate, String description, String genus});
 }
 
 /// @nodoc
@@ -59,6 +60,7 @@ class _$PokemonSpeciesInfoCopyWithImpl<$Res, $Val extends PokemonSpeciesInfo>
   $Res call({
     Object? genderRate = null,
     Object? description = null,
+    Object? genus = null,
   }) {
     return _then(_value.copyWith(
       genderRate: null == genderRate
@@ -68,6 +70,10 @@ class _$PokemonSpeciesInfoCopyWithImpl<$Res, $Val extends PokemonSpeciesInfo>
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      genus: null == genus
+          ? _value.genus
+          : genus // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -81,7 +87,7 @@ abstract class _$$PokemonSpeciesInfoImplCopyWith<$Res>
       __$$PokemonSpeciesInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int genderRate, String description});
+  $Res call({int genderRate, String description, String genus});
 }
 
 /// @nodoc
@@ -99,6 +105,7 @@ class __$$PokemonSpeciesInfoImplCopyWithImpl<$Res>
   $Res call({
     Object? genderRate = null,
     Object? description = null,
+    Object? genus = null,
   }) {
     return _then(_$PokemonSpeciesInfoImpl(
       genderRate: null == genderRate
@@ -109,6 +116,10 @@ class __$$PokemonSpeciesInfoImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      genus: null == genus
+          ? _value.genus
+          : genus // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -118,7 +129,9 @@ class __$$PokemonSpeciesInfoImplCopyWithImpl<$Res>
 @JsonSerializable(createToJson: true)
 class _$PokemonSpeciesInfoImpl implements _PokemonSpeciesInfo {
   const _$PokemonSpeciesInfoImpl(
-      {required this.genderRate, required this.description});
+      {required this.genderRate,
+      required this.description,
+      required this.genus});
 
   factory _$PokemonSpeciesInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonSpeciesInfoImplFromJson(json);
@@ -127,10 +140,12 @@ class _$PokemonSpeciesInfoImpl implements _PokemonSpeciesInfo {
   final int genderRate;
   @override
   final String description;
+  @override
+  final String genus;
 
   @override
   String toString() {
-    return 'PokemonSpeciesInfo(genderRate: $genderRate, description: $description)';
+    return 'PokemonSpeciesInfo(genderRate: $genderRate, description: $description, genus: $genus)';
   }
 
   @override
@@ -141,12 +156,13 @@ class _$PokemonSpeciesInfoImpl implements _PokemonSpeciesInfo {
             (identical(other.genderRate, genderRate) ||
                 other.genderRate == genderRate) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.genus, genus) || other.genus == genus));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, genderRate, description);
+  int get hashCode => Object.hash(runtimeType, genderRate, description, genus);
 
   /// Create a copy of PokemonSpeciesInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -168,7 +184,8 @@ class _$PokemonSpeciesInfoImpl implements _PokemonSpeciesInfo {
 abstract class _PokemonSpeciesInfo implements PokemonSpeciesInfo {
   const factory _PokemonSpeciesInfo(
       {required final int genderRate,
-      required final String description}) = _$PokemonSpeciesInfoImpl;
+      required final String description,
+      required final String genus}) = _$PokemonSpeciesInfoImpl;
 
   factory _PokemonSpeciesInfo.fromJson(Map<String, dynamic> json) =
       _$PokemonSpeciesInfoImpl.fromJson;
@@ -177,6 +194,8 @@ abstract class _PokemonSpeciesInfo implements PokemonSpeciesInfo {
   int get genderRate;
   @override
   String get description;
+  @override
+  String get genus;
 
   /// Create a copy of PokemonSpeciesInfo
   /// with the given fields replaced by the non-null parameter values.

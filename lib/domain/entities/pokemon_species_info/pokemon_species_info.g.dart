@@ -11,6 +11,7 @@ _$PokemonSpeciesInfoImpl _$$PokemonSpeciesInfoImplFromJson(
     _$PokemonSpeciesInfoImpl(
       genderRate: (json['genderRate'] as num).toInt(),
       description: json['description'] as String,
+      genus: json['genus'] as String,
     );
 
 Map<String, dynamic> _$$PokemonSpeciesInfoImplToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$PokemonSpeciesInfoImplToJson(
     <String, dynamic>{
       'genderRate': instance.genderRate,
       'description': instance.description,
+      'genus': instance.genus,
     };

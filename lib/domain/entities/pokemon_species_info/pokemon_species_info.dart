@@ -9,6 +9,7 @@ class PokemonSpeciesInfo with _$PokemonSpeciesInfo {
   const factory PokemonSpeciesInfo({
     required int genderRate,
     required String description,
+    required String genus,
   }) = _PokemonSpeciesInfo;
 
   factory PokemonSpeciesInfo.fromJson(Map<String, dynamic> json) =>
@@ -18,10 +19,23 @@ class PokemonSpeciesInfo with _$PokemonSpeciesInfo {
 Map<String, dynamic> _getJsonAtPath(Map<String, dynamic> json) {
   var flavorTextEntries = json['flavor_text_entries'];
   var description = flavorTextEntries[0]['flavor_text'];
+  var genera = json['genera'];
+
+  List<dynamic> englishFlavorTexts = flavorTextEntries
+      .where((entry) =>
+          (entry as Map<String, dynamic>)['language']['name'] == 'en')
+      .map((entry) => (entry as Map<String, dynamic>)['flavor_text'] as String)
+      .toList();
+  List<dynamic> genus = genera
+      .where((entry) =>
+          (entry as Map<String, dynamic>)['language']['name'] == 'en')
+      .map((entry) => (entry as Map<String, dynamic>)['genus'] as String)
+      .toList();
 
   return {
     'genderRate': json['gender_rate'],
-    'description': description,
+    'description': englishFlavorTexts[0],
+    'genus': genus[0]
   };
 }
 //TODO: Genus still to do, but I first want to test it simple
