@@ -25,7 +25,9 @@ class PokemonInformation extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     double marginHorizontal = 10;
-    final isFav = ref.watch(favoritesProvider).contains(pokemonInfo.id);
+    final isFav = ref
+        .watch(favoritesProvider)
+        .contains(pokemonInfo.id); // to see if is Favorite o not.
     final speciesInfo =
         ref.watch(fetchPokemonSpeciesInfoProvider(pokemonInfo.id));
     return Scaffold(
