@@ -68,7 +68,10 @@ class PokemonTile extends ConsumerWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 15,
+                      ),
+                      SizedBox(
+                        height: 20,
                         child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: mapStringToIcons(pokemon.types)),

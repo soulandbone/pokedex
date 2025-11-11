@@ -18,6 +18,7 @@ class Favoritos extends ConsumerWidget {
       loading: () => [],
       error: (e, st) => [],
     );
+
     return ListView.builder(
       itemCount: filteredPokemons.length,
       itemBuilder: (context, index) {

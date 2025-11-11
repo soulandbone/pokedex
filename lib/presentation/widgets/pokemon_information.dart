@@ -11,6 +11,7 @@ import 'package:pokedex/presentation/widgets/colored_line.dart';
 
 import 'package:pokedex/presentation/widgets/custom_top_background.dart';
 import 'package:pokedex/presentation/widgets/label_value.dart';
+import 'package:pokedex/presentation/widgets/weaknesses_grid.dart';
 import 'package:pokedex/providers/providers.dart';
 
 class PokemonInformation extends ConsumerWidget {
@@ -130,7 +131,11 @@ class PokemonInformation extends ConsumerWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 32),
                       ),
-                      SizedBox(height: 80),
+                      WeaknessesGrid(
+                          types: ['grass', 'poison', 'flying', 'fighting']),
+                      SizedBox(
+                        height: 100,
+                      )
                     ],
                   ),
                 ),
