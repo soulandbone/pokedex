@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/constants/app_strings.dart';
 
-class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({super.key});
+class FavoritesEmpty extends StatelessWidget {
+  const FavoritesEmpty({super.key});
 
   @override
   Widget build(BuildContext context) {

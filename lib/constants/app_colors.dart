@@ -29,4 +29,11 @@ class AppColors {
   static const kRockTransparent = Color.fromRGBO(121, 85, 72, 0.5);
   static const kPoisonTransparent = Color.fromRGBO(156, 39, 176, 0.5);
   static const kFlyingTransparent = Color.fromRGBO(0, 188, 212, 0.5);
+
+  ///******************************Widgets Colors**************************************************************///
+
+  static const kBlueProgressIndicator = Color.fromRGBO(23, 62, 165, 1);
+  static const kCircleProgressIndicator = Color.fromRGBO(69, 101, 183, 0.25);
+  static const kTextButton = Color.fromRGBO(250, 250, 250, 1);
+  static const kBlueBackGroundButton = Color.fromRGBO(30, 136, 229, 1);
 }

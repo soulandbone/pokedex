@@ -12,7 +12,7 @@ class Pokedex extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncPokemons =
-        ref.watch(FetchPokemonFullProvider(offSet: 0, limit: 300));
+        ref.watch(FetchPokemonFullProvider(offSet: 0, limit: 200));
 
     return asyncPokemons.when(
       data: (pokemons) {
@@ -42,7 +42,7 @@ class Pokedex extends ConsumerWidget {
               PokemonTile(pokemon: filteredPokemons[index]),
         );
       },
-      loading: () => CircularProgressIndicator(),
+      loading: () => Center(child: CircularProgressIndicator()),
       error: (_, __) => Text('Error loading Pokémon'),
     );
   }

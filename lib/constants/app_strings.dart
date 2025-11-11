@@ -17,6 +17,15 @@ class AppStrings {
   static const kCategoria = 'Categoria';
   static const kAplicar = 'Aplicar';
   static const kCancelar = 'Cancelar';
+  static const kNoHasMarcadoFav = 'No has marcado ningún Pokémon como favorito';
+  static const kAlgoSalioMal = 'Algo salió mal...';
+  static const kNoPudimosCargar =
+      'No pudimos cargar la información en este momento. Verifica tu conexión e intenta nuevamente o más tarde';
+  static const kHazClick =
+      'Haz click en el ícono de corazón de tus Pokémon favoritos y aparecerán aquí';
+  static const kMantenTuPokedexActualizada = 'Mantén tu Pokédex actualizada ';
+  static const kRegistrateYGuardaTuPerfil =
+      'Regístrate y guarda tu perfil, Pokémon favoritos, configuraciones y mucho más en la aplicación ';
 
 //***************************TIPOS*********************************** */
   static const kAcero = 'Acero';
