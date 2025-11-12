@@ -27,6 +27,7 @@ class AppStrings {
   static const kRegistrateYGuardaTuPerfil =
       'Regístrate y guarda tu perfil, Pokémon favoritos, configuraciones y mucho más en la aplicación ';
   static const kBuscarPokemon = 'Buscar Pókemon...';
+  static const kReintentar = 'Reintentar';
 
 //***************************TIPOS*********************************** */
   static const kAcero = 'Acero';

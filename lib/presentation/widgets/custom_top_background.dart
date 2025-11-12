@@ -9,13 +9,12 @@ class CustomTopBackground extends CustomPainter {
 
     // Define the path for the custom shape
     final path = Path()
-      ..moveTo(0, 0) // Start at the top-left corner
-      ..lineTo(size.width, 0) // Line to the top-right corner
-      ..lineTo(size.width,
-          size.height * 0.7) // Line down, create the height of the shape
+      ..moveTo(0, 0) //
+      ..lineTo(size.width, 0) //
+      ..lineTo(size.width, size.height * 0.7) //
       ..quadraticBezierTo(
-        size.width / 2, size.height, // Control point for the curve
-        0, size.height * 0.7, // End point for the curve
+        size.width / 2, size.height, //
+        0, size.height * 0.7, //
       )
       ..close(); // Close the path
 

@@ -21,7 +21,7 @@ class _SearchBoxPokemonState extends State<SearchBoxPokemon> {
 
   @override
   void dispose() {
-    _controller.dispose(); // clean up
+    _controller.dispose(); // limpieza tipica cn controllers
     super.dispose();
   }
 

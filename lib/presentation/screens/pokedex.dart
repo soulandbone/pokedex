@@ -8,6 +8,7 @@ import 'package:pokedex/presentation/screens/modals/filters_modal.dart';
 import 'package:pokedex/presentation/widgets/pokemon_tile.dart';
 import 'package:pokedex/presentation/widgets/searchbox_pokemon.dart';
 import 'package:pokedex/providers/filters.dart';
+
 import 'package:pokedex/providers/providers.dart';
 
 class Pokedex extends ConsumerWidget {
@@ -16,7 +17,7 @@ class Pokedex extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncPokemons =
-        ref.watch(FetchPokemonFullProvider(offSet: 0, limit: 200));
+        ref.watch(FetchPokemonFullProvider(offSet: 0, limit: 125));
 
     final filters = ref.watch(filtersProvider);
     bool containsFilter = filters.contains(true);

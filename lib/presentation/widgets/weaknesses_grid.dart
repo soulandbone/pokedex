@@ -14,10 +14,10 @@ class WeaknessesGrid extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: 3,
         crossAxisCount: 3, // Number of columns
-        crossAxisSpacing: 5, // Horizontal spacing between grid items
-        mainAxisSpacing: 0, // Vertical spacing between grid items
+        crossAxisSpacing: 5,
+        mainAxisSpacing: 0,
       ),
-      itemCount: types.length, // The number of icons you want to display
+      itemCount: types.length,
       itemBuilder: (context, index) {
         final typeName = types[index];
         return Center(
