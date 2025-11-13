@@ -28,6 +28,8 @@ class AppStrings {
       'Regístrate y guarda tu perfil, Pokémon favoritos, configuraciones y mucho más en la aplicación ';
   static const kBuscarPokemon = 'Buscar Pókemon...';
   static const kReintentar = 'Reintentar';
+  static const kNoHayPokemonesConCriterioDeBusq =
+      'No hay pokémones con este criterio de búsqueda';
 
 //***************************TIPOS*********************************** */
   static const kAcero = 'Acero';

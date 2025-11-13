@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/constants/app_lists.dart';
+import 'package:pokedex/constants/app_strings.dart';
 import 'package:pokedex/domain/states/pokemon_state.dart';
 import 'package:pokedex/presentation/screens/error_screen.dart';
 import 'package:pokedex/presentation/screens/modals/filters_modal.dart';
@@ -12,11 +13,40 @@ import 'package:pokedex/providers/filters.dart';
 import 'package:pokedex/providers/pokemon_state_notifier.dart';
 import 'package:pokedex/providers/search_box_filters.dart';
 
-class Pokedex extends ConsumerWidget {
+class Pokedex extends ConsumerStatefulWidget {
   const Pokedex({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _PokedexState();
+}
+
+class _PokedexState extends ConsumerState<Pokedex> {
+  final TextEditingController _textController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _textController.text = ref.read(
+        searchBoxFiltersProvider); //Inicializo el controller para que tenga el valor por default
+  }
+
+  @override
+  void dispose() {
+    _textController
+        .dispose(); //dispongo del controller para que no haya memory leak
+    super.dispose();
+  }
+
+  void clearSearchBox() {
+    ref
+        .read(searchBoxFiltersProvider.notifier)
+        .setSearchBoxFilter(''); //I set the filter to an empty string
+    _textController.clear(); // I clear the controller
+    FocusScope.of(context).unfocus(); // Unfocus the keyboard
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final currentState = ref.watch(pokemonStateNotifierProvider);
 
     final filters = ref.watch(filtersProvider);
@@ -76,17 +106,25 @@ class Pokedex extends ConsumerWidget {
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: Row(
                     children: [
-                      Expanded(child: SearchBoxPokemon()),
+                      Expanded(
+                          child: SearchBoxPokemon(
+                        controller: _textController,
+                      )),
                       SizedBox(
                         width: 30,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.grey, width: 1)),
-                        child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Icon(Icons.search)),
+                      InkWell(
+                        onTap: () {
+                          clearSearchBox();
+                        }, // This is to clear what is in the controller
+                        child: Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.grey, width: 1)),
+                          child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.clear)),
+                        ),
                       )
                     ],
                   ),
@@ -127,12 +165,17 @@ class Pokedex extends ConsumerWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Expanded(
-                    child: ListView.builder(
-                  itemCount: filteredPokemonsByEverything.length,
-                  itemBuilder: (_, index) =>
-                      PokemonTile(pokemon: filteredPokemonsByEverything[index]),
-                ))
+                filteredPokemonsByEverything.isEmpty
+                    ? Text(
+                        AppStrings.kNoHayPokemonesConCriterioDeBusq,
+                        style: GoogleFonts.poppins(),
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                        itemCount: filteredPokemonsByEverything.length,
+                        itemBuilder: (_, index) => PokemonTile(
+                            pokemon: filteredPokemonsByEverything[index]),
+                      ))
               ],
             )),
       );

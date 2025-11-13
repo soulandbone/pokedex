@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'search_box_filters.g.dart';
 
-@Riverpod(keepAlive: false)
+@Riverpod(keepAlive: true)
 class SearchBoxFilters extends _$SearchBoxFilters {
   @override
   String build() => '';
