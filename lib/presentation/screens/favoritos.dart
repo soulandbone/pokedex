@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/domain/states/pokemon_state.dart';
 import 'package:pokedex/presentation/screens/favorites_empty.dart';
 import 'package:pokedex/presentation/widgets/pokemon_tile.dart';
 import 'package:pokedex/providers/favorites.dart';
-import 'package:pokedex/providers/providers.dart';
+import 'package:pokedex/providers/pokemon_state_notifier.dart';
 
 class Favoritos extends ConsumerWidget {
   const Favoritos({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final allPokemons =
-        ref.watch(fetchPokemonFullProvider(limit: 100, offSet: 0));
+    final pokemonState = ref.watch(pokemonStateNotifierProvider);
+
+    if (pokemonState is! PokemonLoaded) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
     final favorites = ref.watch(favoritesProvider);
-    final filteredPokemons = allPokemons.when(
-      data: (allPokemons) =>
-          allPokemons.where((p) => favorites.contains(p.id)).toList(),
-      loading: () => [],
-      error: (e, st) => [],
-    );
+    final allPokemons = pokemonState.fullPokemons;
+
+    print('favorites in favorites are $favorites');
+    final filteredPokemons =
+        allPokemons.where((p) => favorites.contains(p.id)).toList();
 
     return filteredPokemons.isEmpty
         ? FavoritesEmpty()

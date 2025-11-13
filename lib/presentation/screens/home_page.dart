@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/constants/app_strings.dart';
 import 'package:pokedex/presentation/screens/favoritos.dart';
-import 'package:pokedex/presentation/screens/modals/filters_modal.dart';
 import 'package:pokedex/presentation/screens/perfil.dart';
 import 'package:pokedex/presentation/screens/pokedex.dart';
 import 'package:pokedex/presentation/screens/regiones.dart';
+import 'package:pokedex/providers/pokemon_state_notifier.dart';
+import 'package:pokedex/providers/providers.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   int _selectedIndex = 0;
 
   void onSelection(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    ref.read(pokemonStateNotifierProvider.notifier).loadPokemons();
   }
 
   List<Widget> screens = [Pokedex(), Regiones(), Favoritos(), Perfil()];
