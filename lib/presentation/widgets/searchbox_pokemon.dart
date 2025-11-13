@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/constants/app_strings.dart';
+import 'package:pokedex/providers/search_box_filters.dart';
 
-class SearchBoxPokemon extends StatefulWidget {
+class SearchBoxPokemon extends ConsumerStatefulWidget {
   const SearchBoxPokemon({
     super.key,
   });
 
   @override
-  State<SearchBoxPokemon> createState() => _SearchBoxPokemonState();
+  ConsumerState<SearchBoxPokemon> createState() => _SearchBoxPokemonState();
 }
 
-class _SearchBoxPokemonState extends State<SearchBoxPokemon> {
-  late TextEditingController _controller;
+class _SearchBoxPokemonState extends ConsumerState<SearchBoxPokemon> {
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    _controller.text = ref.read(searchBoxFiltersProvider);
   }
 
   @override
@@ -41,7 +43,14 @@ class _SearchBoxPokemonState extends State<SearchBoxPokemon> {
           Expanded(
             child: TextField(
               controller: _controller,
-              onChanged: (value) {},
+              onChanged: (value) {
+                setState(() {
+                  _controller.text = value;
+                  ref
+                      .read(searchBoxFiltersProvider.notifier)
+                      .setSearchBoxFilter(value);
+                });
+              },
               decoration: InputDecoration(
                 hintText: AppStrings.kBuscarPokemon,
                 border: InputBorder.none,

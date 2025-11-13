@@ -6,7 +6,6 @@ import 'package:pokedex/presentation/screens/perfil.dart';
 import 'package:pokedex/presentation/screens/pokedex.dart';
 import 'package:pokedex/presentation/screens/regiones.dart';
 import 'package:pokedex/providers/pokemon_state_notifier.dart';
-import 'package:pokedex/providers/providers.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -35,9 +34,6 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppStrings.kTitle),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 12,
         type: BottomNavigationBarType.fixed,

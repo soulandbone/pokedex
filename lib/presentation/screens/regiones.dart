@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/providers/pokemon_state_notifier.dart';
 
 class Regiones extends ConsumerWidget {
   const Regiones({super.key});
