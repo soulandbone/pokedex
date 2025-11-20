@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex/constants/app_maps.dart';
 import 'package:pokedex/constants/app_strings.dart';
 import 'package:pokedex/domain/entities/pokemon_full/pokemon_full.dart';
+import 'package:pokedex/helpers/calculate_weaknesses.dart';
 import 'package:pokedex/helpers/capitalizer.dart';
 import 'package:pokedex/helpers/category_converter.dart';
 import 'package:pokedex/helpers/description_formatter.dart';
@@ -28,165 +29,185 @@ class PokemonInformation extends ConsumerWidget {
     final isFav = ref
         .watch(favoritesProvider)
         .contains(pokemonInfo.id); // to see if is Favorite o not.
-    final speciesInfo =
+    final speciesInfoAsync =
         ref.watch(fetchPokemonSpeciesInfoProvider(pokemonInfo.id));
+    final typeInfoAsync =
+        ref.watch(fetchPokemonTypeInfoProvider(pokemonInfo.types));
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text(capitalizer(pokemonInfo.name)),
-        ),
-        body: speciesInfo.when(
-            data: (data) => SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              height: 350,
-                              width: double.infinity,
-                              child: CustomPaint(
-                                  painter: CustomTopBackground(
-                                      color: AppMaps
-                                          .typeColorMap[pokemonInfo.types[0]])),
-                            ),
-                            Center(
-                                child: (AppMaps
-                                    .typeIconMapLarge[pokemonInfo.types[0]])),
-                            Positioned(
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                child: Center(
-                                    child: SizedBox(
-                                  width: 300,
-                                  child: Image.network(
-                                    fit: BoxFit.contain,
-                                    pokemonInfo.spriteUrl,
+      appBar: AppBar(
+        title: Text(capitalizer(pokemonInfo.name)),
+      ),
+      body: speciesInfoAsync.when(
+          data: (speciesInfoData) {
+            return typeInfoAsync.when(
+                data: (typeInfoData) {
+                  print(typeInfoData);
+                  return SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 350,
+                                width: double.infinity,
+                                child: CustomPaint(
+                                    painter: CustomTopBackground(
+                                        color: AppMaps.typeColorMap[
+                                            pokemonInfo.types[0]])),
+                              ),
+                              Center(
+                                  child: (AppMaps
+                                      .typeIconMapLarge[pokemonInfo.types[0]])),
+                              Positioned(
+                                  bottom: 0,
+                                  left: 0,
+                                  right: 0,
+                                  child: Center(
+                                      child: SizedBox(
+                                    width: 300,
+                                    child: Image.network(
+                                      fit: BoxFit.contain,
+                                      pokemonInfo.spriteUrl,
+                                    ),
+                                  ))),
+                              Positioned(
+                                right: 30,
+                                top: 30,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    ref
+                                        .read(favoritesProvider.notifier)
+                                        .toggle(pokemonInfo.id);
+                                  },
+                                  child: Icon(
+                                    size: 40,
+                                    isFav
+                                        ? Icons.favorite
+                                        : Icons.favorite_border_outlined,
+                                    color: isFav ? Colors.red : Colors.white,
                                   ),
-                                ))),
-                            Positioned(
-                              right: 30,
-                              top: 30,
-                              child: GestureDetector(
-                                onTap: () {
-                                  ref
-                                      .read(favoritesProvider.notifier)
-                                      .toggle(pokemonInfo.id);
-                                },
-                                child: Icon(
-                                  size: 40,
-                                  isFav
-                                      ? Icons.favorite
-                                      : Icons.favorite_border_outlined,
-                                  color: isFav ? Colors.red : Colors.white,
                                 ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: marginHorizontal),
+                          child: Text(
+                            capitalizer(pokemonInfo.name),
+                            style: GoogleFonts.poppins(
+                                fontSize: 32, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: marginHorizontal),
+                          child: Text('N° ${numberFormatter(pokemonInfo.id)}',
+                              style: TextStyle(fontSize: 22)),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          height: 30,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: marginHorizontal),
+                          child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:
+                                  mapStringToIconsMedium(pokemonInfo.types)),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                              descriptionFormatter(speciesInfoData.description),
+                              softWrap: true),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Divider(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Expanded(
+                              child: LabelValue(
+                                textLabel: AppStrings.kPeso.toUpperCase(),
+                                icon: Icons.balance,
+                                value:
+                                    '${(pokemonInfo.weight / 10).toString()} KG',
+                              ),
+                            ),
+                            Expanded(
+                              child: LabelValue(
+                                textLabel: AppStrings.kAltura.toUpperCase(),
+                                icon: Icons.height,
+                                value: '${pokemonInfo.height / 10} m',
                               ),
                             ),
                           ],
                         ),
-                      ),
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: marginHorizontal),
-                        child: Text(
-                          capitalizer(pokemonInfo.name),
-                          style: GoogleFonts.poppins(
-                              fontSize: 32, fontWeight: FontWeight.w500),
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Expanded(
+                              child: LabelValue(
+                                textLabel: AppStrings.kCategoria.toUpperCase(),
+                                icon: Icons.category_outlined,
+                                value: categoryConverter(speciesInfoData.genus),
+                              ),
+                            ),
+                            Expanded(
+                              child: LabelValue(
+                                textLabel: AppStrings.kHabilidad.toUpperCase(),
+                                icon: Icons.catching_pokemon_outlined,
+                                value: pokemonInfo.abilities[0],
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: marginHorizontal),
-                        child: Text('N° ${numberFormatter(pokemonInfo.id)}',
-                            style: TextStyle(fontSize: 22)),
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: marginHorizontal),
-                        child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children:
-                                mapStringToIconsMedium(pokemonInfo.types)),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(descriptionFormatter(data.description),
-                            softWrap: true),
-                      ),
-                      Divider(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                            child: LabelValue(
-                              textLabel: AppStrings.kPeso.toUpperCase(),
-                              icon: Icons.balance,
-                              value:
-                                  '${(pokemonInfo.weight / 10).toString()} KG',
-                            ),
-                          ),
-                          Expanded(
-                            child: LabelValue(
-                              textLabel: AppStrings.kAltura.toUpperCase(),
-                              icon: Icons.height,
-                              value: '${pokemonInfo.height / 10} m',
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                            child: LabelValue(
-                              textLabel: AppStrings.kCategoria.toUpperCase(),
-                              icon: Icons.category_outlined,
-                              value: categoryConverter(data.genus),
-                            ),
-                          ),
-                          Expanded(
-                            child: LabelValue(
-                              textLabel: AppStrings.kHabilidad.toUpperCase(),
-                              icon: Icons.catching_pokemon_outlined,
-                              value: pokemonInfo.abilities[0],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 30),
-                      Center(child: Text('GENERO')),
-                      SizedBox(height: 30),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
-                        child: ColoredLine(
-                            backgroundColor: Colors.red,
-                            fillColor: Colors.blue,
-                            genderRate: data.genderRate),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'Debilidades',
-                          style: GoogleFonts.poppins(
-                              fontSize: 18, fontWeight: FontWeight.w500),
+                        SizedBox(height: 30),
+                        Center(child: Text('GENERO')),
+                        SizedBox(height: 30),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          child: ColoredLine(
+                              backgroundColor: Colors.red,
+                              fillColor: Colors.blue,
+                              genderRate: speciesInfoData.genderRate),
                         ),
-                      ),
-                      WeaknessesGrid(
-                          types: ['fire', 'psychic', 'ice', 'flying']),
-                      SizedBox(
-                        height: 100,
-                      )
-                    ],
-                  ),
-                ),
-            error: (err, stack) => Text('Error: $err'),
-            loading: () => CircularProgressIndicator()));
+                        SizedBox(
+                          height: 40,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(
+                            'Debilidades',
+                            style: GoogleFonts.poppins(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        WeaknessesGrid(
+                            types: calculateWeaknesses(typeInfoData)),
+                        SizedBox(
+                          height: 100,
+                        )
+                      ],
+                    ),
+                  );
+                },
+                error: (err, stack) => Text('Error: $err'),
+                loading: () => CircularProgressIndicator());
+          },
+          loading: () => CircularProgressIndicator(),
+          error: (err, stack) => Text('Error: $err')),
+    );
   }
 }

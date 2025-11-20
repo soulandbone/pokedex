@@ -18,7 +18,6 @@ class PokemonSpeciesInfo with _$PokemonSpeciesInfo {
 
 Map<String, dynamic> _getJsonAtPath(Map<String, dynamic> json) {
   var flavorTextEntries = json['flavor_text_entries'];
-  var description = flavorTextEntries[0]['flavor_text'];
   var genera = json['genera'];
 
   List<dynamic> englishFlavorTexts = flavorTextEntries
@@ -38,4 +37,3 @@ Map<String, dynamic> _getJsonAtPath(Map<String, dynamic> json) {
     'genus': genus[0]
   };
 }
-//TODO: Genus still to do, but I first want to test it simple

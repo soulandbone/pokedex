@@ -607,5 +607,181 @@ class _FetchPokemonFullProviderElement
   @override
   int get limit => (origin as FetchPokemonFullProvider).limit;
 }
+
+String _$pokemonTypeInfoApiClientHash() =>
+    r'2c1a660b5d31b0c6506a2d7ab97ce907156a6e08';
+
+/// See also [pokemonTypeInfoApiClient].
+@ProviderFor(pokemonTypeInfoApiClient)
+final pokemonTypeInfoApiClientProvider =
+    AutoDisposeProvider<PokemonTypeInfoApiClient>.internal(
+  pokemonTypeInfoApiClient,
+  name: r'pokemonTypeInfoApiClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pokemonTypeInfoApiClientHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef PokemonTypeInfoApiClientRef
+    = AutoDisposeProviderRef<PokemonTypeInfoApiClient>;
+String _$pokemonTypeInfoRepositoryHash() =>
+    r'01c67ac8cd4e742f43aa8405850c8adbbcfb802b';
+
+/// See also [pokemonTypeInfoRepository].
+@ProviderFor(pokemonTypeInfoRepository)
+final pokemonTypeInfoRepositoryProvider =
+    AutoDisposeProvider<PokemonTypeInfoRepository>.internal(
+  pokemonTypeInfoRepository,
+  name: r'pokemonTypeInfoRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$pokemonTypeInfoRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef PokemonTypeInfoRepositoryRef
+    = AutoDisposeProviderRef<PokemonTypeInfoRepository>;
+String _$fetchPokemonTypeInfoHash() =>
+    r'82329e069d3bb5b9aa7b1d467957babf30e90f81';
+
+/// See also [fetchPokemonTypeInfo].
+@ProviderFor(fetchPokemonTypeInfo)
+const fetchPokemonTypeInfoProvider = FetchPokemonTypeInfoFamily();
+
+/// See also [fetchPokemonTypeInfo].
+class FetchPokemonTypeInfoFamily
+    extends Family<AsyncValue<List<PokemonTypeInfo>>> {
+  /// See also [fetchPokemonTypeInfo].
+  const FetchPokemonTypeInfoFamily();
+
+  /// See also [fetchPokemonTypeInfo].
+  FetchPokemonTypeInfoProvider call(
+    List<String> types,
+  ) {
+    return FetchPokemonTypeInfoProvider(
+      types,
+    );
+  }
+
+  @override
+  FetchPokemonTypeInfoProvider getProviderOverride(
+    covariant FetchPokemonTypeInfoProvider provider,
+  ) {
+    return call(
+      provider.types,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchPokemonTypeInfoProvider';
+}
+
+/// See also [fetchPokemonTypeInfo].
+class FetchPokemonTypeInfoProvider
+    extends AutoDisposeFutureProvider<List<PokemonTypeInfo>> {
+  /// See also [fetchPokemonTypeInfo].
+  FetchPokemonTypeInfoProvider(
+    List<String> types,
+  ) : this._internal(
+          (ref) => fetchPokemonTypeInfo(
+            ref as FetchPokemonTypeInfoRef,
+            types,
+          ),
+          from: fetchPokemonTypeInfoProvider,
+          name: r'fetchPokemonTypeInfoProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$fetchPokemonTypeInfoHash,
+          dependencies: FetchPokemonTypeInfoFamily._dependencies,
+          allTransitiveDependencies:
+              FetchPokemonTypeInfoFamily._allTransitiveDependencies,
+          types: types,
+        );
+
+  FetchPokemonTypeInfoProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.types,
+  }) : super.internal();
+
+  final List<String> types;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<PokemonTypeInfo>> Function(FetchPokemonTypeInfoRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchPokemonTypeInfoProvider._internal(
+        (ref) => create(ref as FetchPokemonTypeInfoRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        types: types,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<PokemonTypeInfo>> createElement() {
+    return _FetchPokemonTypeInfoProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FetchPokemonTypeInfoProvider && other.types == types;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, types.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin FetchPokemonTypeInfoRef
+    on AutoDisposeFutureProviderRef<List<PokemonTypeInfo>> {
+  /// The parameter `types` of this provider.
+  List<String> get types;
+}
+
+class _FetchPokemonTypeInfoProviderElement
+    extends AutoDisposeFutureProviderElement<List<PokemonTypeInfo>>
+    with FetchPokemonTypeInfoRef {
+  _FetchPokemonTypeInfoProviderElement(super.provider);
+
+  @override
+  List<String> get types => (origin as FetchPokemonTypeInfoProvider).types;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

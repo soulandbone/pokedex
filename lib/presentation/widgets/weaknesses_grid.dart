@@ -22,8 +22,7 @@ class WeaknessesGrid extends StatelessWidget {
         final typeName = types[index];
         return Center(
           child: SizedBox(
-            height: 90,
-            width: 90,
+            height: 30,
             child: AppMaps.typeIconMapSmall[typeName] ?? SizedBox(),
           ),
         );

@@ -4,64 +4,85 @@ import 'package:pokedex/constants/app_colors.dart';
 double width = 20;
 double height = 20;
 
-double widthMedium = 90;
-double heightMedium = 90;
+double widthMedium = 80;
+double heightMedium = 80;
+
+BoxFit fitMedium = BoxFit.cover;
+BoxFit fitSmall = BoxFit.fitWidth;
 
 class AppMaps {
   static Map<String, Widget> typeIconMapSmall = {
     'grass': Image.asset(
       'assets/small_icons/planta.png',
+      fit: fitSmall,
     ), // example icon
     'bug': Image.asset(
       'assets/small_icons/bicho.png',
+      fit: fitSmall,
     ),
     'normal': Image.asset(
       'assets/small_icons/normal.png',
+      fit: fitSmall,
     ),
     'flying': Image.asset(
       'assets/small_icons/volador.png',
+      fit: fitSmall,
     ),
     'poison': Image.asset(
       'assets/small_icons/veneno.png',
+      fit: fitSmall,
     ),
     'fire': Image.asset(
       'assets/small_icons/fuego.png',
+      fit: fitSmall,
     ),
     'water': Image.asset(
       'assets/small_icons/agua.png',
+      fit: fitSmall,
     ),
     'electric': Image.asset(
       'assets/small_icons/electrico.png',
+      fit: fitSmall,
     ),
     'ground': Image.asset(
       'assets/small_icons/tierra.png',
+      fit: fitSmall,
     ),
     'fairy': Image.asset(
       'assets/small_icons/hada.png',
+      fit: fitSmall,
     ),
     'fighting': Image.asset(
       'assets/small_icons/lucha.png',
+      fit: fitSmall,
     ),
     'psychic': Image.asset(
       'assets/small_icons/psiquico.png',
+      fit: fitSmall,
     ),
     'rock': Image.asset(
       'assets/small_icons/roca.png',
+      fit: fitSmall,
     ),
     'steel': Image.asset(
       'assets/small_icons/acero.png',
+      fit: fitSmall,
     ),
     'ice': Image.asset(
       'assets/small_icons/hielo.png',
+      fit: fitSmall,
     ),
     'ghost': Image.asset(
       'assets/small_icons/fantasma.png',
+      fit: fitSmall,
     ),
     'dragon': Image.asset(
       'assets/small_icons/dragon.png',
+      fit: fitSmall,
     ),
     'dark': Image.asset(
       'assets/small_icons/siniestro.png',
+      fit: fitSmall,
     )
 
     // more icons
@@ -169,93 +190,75 @@ class AppMaps {
   static Map<String, Widget> typeIconMapMedium = {
     'grass': Image.asset(
       'assets/small_icons/planta.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ), // example icon
     'bug': Image.asset(
       'assets/small_icons/bicho.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'normal': Image.asset(
       'assets/small_icons/normal.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'flying': Image.asset(
       'assets/small_icons/volador.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'poison': Image.asset(
       'assets/small_icons/veneno.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'fire': Image.asset(
       'assets/small_icons/fuego.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'water': Image.asset(
       'assets/small_icons/agua.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'electric': Image.asset(
       'assets/small_icons/electrico.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'ground': Image.asset(
       'assets/small_icons/tierra.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'fairy': Image.asset(
       'assets/small_icons/hada.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'fighting': Image.asset(
       'assets/small_icons/lucha.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'psychic': Image.asset(
       'assets/small_icons/psiquico.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'rock': Image.asset(
       'assets/small_icons/roca.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'steel': Image.asset(
       'assets/small_icons/acero.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'ice': Image.asset(
       'assets/small_icons/hielo.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'ghost': Image.asset(
       'assets/small_icons/fantasma.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'dragon': Image.asset(
       'assets/small_icons/dragon.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     ),
     'dark': Image.asset(
       'assets/small_icons/siniestro.png',
-      width: widthMedium,
-      height: heightMedium,
+      fit: fitMedium,
     )
 
     // more icons
