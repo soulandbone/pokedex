@@ -26,7 +26,9 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    ref.read(pokemonStateNotifierProvider.notifier).loadPokemons();
+    ref
+        .read(pokemonStateNotifierProvider.notifier)
+        .loadPokemons(offset: 0, limit: 125);
   }
 
   List<Widget> screens = [Pokedex(), Regiones(), Favoritos(), Perfil()];

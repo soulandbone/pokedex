@@ -22,18 +22,22 @@ class Pokedex extends ConsumerStatefulWidget {
 
 class _PokedexState extends ConsumerState<Pokedex> {
   final TextEditingController _textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  int pokemonOffset = 125;
 
   @override
   void initState() {
     super.initState();
     _textController.text = ref.read(
         searchBoxFiltersProvider); //Inicializo el controller para que tenga el valor por default
+    _scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
     _textController
         .dispose(); //dispongo del controller para que no haya memory leak
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -43,6 +47,18 @@ class _PokedexState extends ConsumerState<Pokedex> {
         .setSearchBoxFilter(''); //I set the filter to an empty string
     _textController.clear(); // I clear the controller
     FocusScope.of(context).unfocus(); // Unfocus the keyboard
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      ref.read(pokemonStateNotifierProvider.notifier).loadPokemons(
+          offset: pokemonOffset,
+          limit: 125); // Load more Pokémon when scrolled to the bottom
+      setState(() {
+        pokemonOffset += 125; //we update the value of the offset variable
+      });
+    }
   }
 
   @override
@@ -172,6 +188,7 @@ class _PokedexState extends ConsumerState<Pokedex> {
                       )
                     : Expanded(
                         child: ListView.builder(
+                        controller: _scrollController,
                         itemCount: filteredPokemonsByEverything.length,
                         itemBuilder: (_, index) => PokemonTile(
                             pokemon: filteredPokemonsByEverything[index]),

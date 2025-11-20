@@ -14,20 +14,31 @@ class PokemonStateNotifier extends _$PokemonStateNotifier {
     state = PokemonLoaded(pokemons);
   }
 
+  void addPokemons(List<PokemonFull> newPokemons) {
+    if (state is PokemonLoaded) {
+      final currentPokemons = (state as PokemonLoaded).fullPokemons;
+      state = PokemonLoaded([...currentPokemons, ...newPokemons]);
+    }
+  }
+
   void setError(String message) {
     state = PokemonError(message);
   }
 
-  void loadPokemons() async {
+  void loadPokemons({required int offset, required int limit}) async {
     print('starting to load pokemons');
     // state = PokemonLoading();
 
     try {
       final pokemons = await ref
-          .read(FetchPokemonFullProvider(offSet: 0, limit: 125).future);
+          .read(FetchPokemonFullProvider(offSet: offset, limit: limit).future);
 
       print("Fetched ${pokemons.length} pokemons");
-      setPokemonList(pokemons);
+      if (offset == 0) {
+        setPokemonList(pokemons);
+      } else {
+        addPokemons(pokemons);
+      }
     } catch (e) {
       state = PokemonError(e.toString());
     }
