@@ -7,6 +7,8 @@ part 'pokemon_state_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
 class PokemonStateNotifier extends _$PokemonStateNotifier {
+  bool isLoadingMore = false;
+
   @override
   PokemonState build() => PokemonLoading();
 
@@ -26,14 +28,17 @@ class PokemonStateNotifier extends _$PokemonStateNotifier {
   }
 
   void loadPokemons({required int offset, required int limit}) async {
-    print('starting to load pokemons');
-    // state = PokemonLoading();
+    if (isLoadingMore) return;
+
+    if (offset > 0) {
+      isLoadingMore = true;
+    }
 
     try {
       final pokemons = await ref
           .read(FetchPokemonFullProvider(offSet: offset, limit: limit).future);
 
-      print("Fetched ${pokemons.length} pokemons");
+      // print("Fetched ${pokemons.length} pokemons");
       if (offset == 0) {
         setPokemonList(pokemons);
       } else {
@@ -41,6 +46,10 @@ class PokemonStateNotifier extends _$PokemonStateNotifier {
       }
     } catch (e) {
       state = PokemonError(e.toString());
+    } finally {
+      if (offset > 0) {
+        isLoadingMore = false;
+      }
     }
   }
 }

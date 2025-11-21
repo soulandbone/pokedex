@@ -7,7 +7,7 @@ part of 'pokemon_state_notifier.dart';
 // **************************************************************************
 
 String _$pokemonStateNotifierHash() =>
-    r'e2a2c84f51c9fe255660377ad6333d11f04ec9e2';
+    r'a4e0c3965e5b59f5d5f0f203998cd5f74b9d30e9';
 
 /// See also [PokemonStateNotifier].
 @ProviderFor(PokemonStateNotifier)

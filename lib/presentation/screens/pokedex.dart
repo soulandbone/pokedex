@@ -24,6 +24,7 @@ class _PokedexState extends ConsumerState<Pokedex> {
   final TextEditingController _textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   int pokemonOffset = 125;
+  bool isLoadingMore = false;
 
   @override
   void initState() {
@@ -52,12 +53,15 @@ class _PokedexState extends ConsumerState<Pokedex> {
   void _onScroll() {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
-      ref.read(pokemonStateNotifierProvider.notifier).loadPokemons(
-          offset: pokemonOffset,
-          limit: 125); // Load more Pokémon when scrolled to the bottom
-      setState(() {
-        pokemonOffset += 125; //we update the value of the offset variable
-      });
+      if (!ref.read(pokemonStateNotifierProvider.notifier).isLoadingMore) {
+        ref.read(pokemonStateNotifierProvider.notifier).loadPokemons(
+              offset: pokemonOffset,
+              limit: 125,
+            );
+        setState(() {
+          pokemonOffset += 125; //we update the value of the offset variable
+        });
+      }
     }
   }
 
@@ -86,7 +90,13 @@ class _PokedexState extends ConsumerState<Pokedex> {
       return Center(
         child: CircularProgressIndicator(),
       );
-    } else if (currentState is PokemonLoaded) {
+    }
+
+    if (currentState is PokemonError) {
+      return ErrorScreen();
+    }
+
+    if (currentState is PokemonLoaded) {
       final filteredPokemons = currentState.fullPokemons.where((pokemon) {
         if (activeTypes.isEmpty) return true;
         return pokemon.types.any((type) => activeTypes.contains(type));
@@ -189,16 +199,31 @@ class _PokedexState extends ConsumerState<Pokedex> {
                     : Expanded(
                         child: ListView.builder(
                         controller: _scrollController,
-                        itemCount: filteredPokemonsByEverything.length,
-                        itemBuilder: (_, index) => PokemonTile(
-                            pokemon: filteredPokemonsByEverything[index]),
+                        itemCount: filteredPokemonsByEverything.length +
+                            (ref
+                                    .watch(
+                                        pokemonStateNotifierProvider.notifier)
+                                    .isLoadingMore
+                                ? 1
+                                : 0),
+                        itemBuilder: (_, index) {
+                          if (index < filteredPokemonsByEverything.length) {
+                            return PokemonTile(
+                                pokemon: filteredPokemonsByEverything[index]);
+                          } else if (ref
+                              .watch(pokemonStateNotifierProvider.notifier)
+                              .isLoadingMore) {
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          return SizedBox.shrink();
+                        },
                       ))
               ],
             )),
       );
-    } else if (currentState is PokemonError) {
-      return ErrorScreen();
     }
-    return ErrorScreen();
+    return SizedBox(
+      child: Text('Its not of the previous states'),
+    );
   }
 }
