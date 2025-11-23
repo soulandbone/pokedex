@@ -20,11 +20,17 @@ class PokemonFullRepositoryImpl implements PokemonFullRepository {
       final url = result['url'] as String;
       final name = result['name'] as String;
       final jsonData = await detailsApiClient.fetchPokemonTileData(url);
+
       return PokemonFull.fromJson({
-        ...jsonData,
+        //...jsonData,
         'name': name,
         'url': url,
-        'id': extractIdFromUrl(url).toString()
+        'id': extractIdFromUrl(url).toString(),
+        'weight': jsonData['weight'],
+        'spriteUrl': jsonData['sprites']?['front_default'] as String? ?? '',
+        'height': jsonData['height'],
+        'types': jsonData['types'],
+        'abilities': jsonData['abilities']
       });
     }).toList();
     return await Future.wait(fullDataFutures);

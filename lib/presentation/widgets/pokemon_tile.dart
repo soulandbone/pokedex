@@ -19,6 +19,7 @@ class PokemonTile extends ConsumerWidget {
     // final detailsAsync = ref.watch(fetchPokemonDetailsProvider(pokemon.url));
 
     final isFav = ref.watch(favoritesProvider).contains(pokemon.id);
+    print('Pokemon URL es la que pongo ahora ${pokemon.spriteUrl}');
 
     // print('Details Async: $detailsAsync');
 

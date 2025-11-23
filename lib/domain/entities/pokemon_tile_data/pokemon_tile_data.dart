@@ -5,7 +5,6 @@ part 'pokemon_tile_data.g.dart';
 
 @freezed
 class PokemonTileData with _$PokemonTileData {
-  @JsonSerializable(createToJson: true) // optional, default is true
   const factory PokemonTileData({
     required String frontDefault,
     required int weight,

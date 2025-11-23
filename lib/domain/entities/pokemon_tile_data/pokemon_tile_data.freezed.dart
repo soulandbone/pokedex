@@ -136,8 +136,7 @@ class __$$PokemonTileDataImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(createToJson: true)
+@JsonSerializable()
 class _$PokemonTileDataImpl implements _PokemonTileData {
   const _$PokemonTileDataImpl(
       {required this.frontDefault,

@@ -21,8 +21,6 @@ class PokemonFull with _$PokemonFull {
 }
 
 Map<String, dynamic> _getJsonAtPath(Map<String, dynamic> json) {
-  final spriteUrl = json['sprites']['front_default'] as String? ?? '';
-
   final typesJson = json['types'] as List<dynamic>;
   final abilitiesJson = json['abilities'] as List<dynamic>;
   final types = typesJson
@@ -36,7 +34,7 @@ Map<String, dynamic> _getJsonAtPath(Map<String, dynamic> json) {
     'id': extractIdFromUrl(json['url']).toString(),
     'name': json['name'], // From full JSON // 'name' : json['name]
     'url': json['url'], // From full JSON // 'url' : json['url']
-    'spriteUrl': spriteUrl,
+    'spriteUrl': json['spriteUrl'],
     'weight': json['weight'],
     'height': json['height'],
     'types': types,

@@ -5,7 +5,6 @@ part 'pokemon_species_info.g.dart';
 
 @freezed
 class PokemonSpeciesInfo with _$PokemonSpeciesInfo {
-  @JsonSerializable(createToJson: true) // optional, default is true
   const factory PokemonSpeciesInfo({
     required int genderRate,
     required String description,

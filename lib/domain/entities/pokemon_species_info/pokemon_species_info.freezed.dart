@@ -125,8 +125,7 @@ class __$$PokemonSpeciesInfoImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(createToJson: true)
+@JsonSerializable()
 class _$PokemonSpeciesInfoImpl implements _PokemonSpeciesInfo {
   const _$PokemonSpeciesInfoImpl(
       {required this.genderRate,

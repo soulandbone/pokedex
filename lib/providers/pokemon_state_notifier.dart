@@ -45,6 +45,7 @@ class PokemonStateNotifier extends _$PokemonStateNotifier {
         addPokemons(pokemons);
       }
     } catch (e) {
+      print('error is  ${e.toString()}');
       state = PokemonError(e.toString());
     } finally {
       if (offset > 0) {
