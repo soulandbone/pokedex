@@ -84,8 +84,6 @@ class _PokedexState extends ConsumerState<Pokedex> {
     final activeTypes =
         activeIndices.map((index) => AppLists.typesOfPokemon[index]).toList();
 
-    // print('Active types are $activeTypes');
-
     if (currentState is PokemonLoading) {
       return Center(
         child: CircularProgressIndicator(),
@@ -223,7 +221,8 @@ class _PokedexState extends ConsumerState<Pokedex> {
       );
     }
     return SizedBox(
-      child: Text('Its not of the previous states'),
+      child:
+          Center(child: Text('There has been a problem with the Information')),
     );
   }
 }

@@ -42,7 +42,6 @@ class PokemonInformation extends ConsumerWidget {
           data: (speciesInfoData) {
             return typeInfoAsync.when(
                 data: (typeInfoData) {
-                  print(typeInfoData);
                   return SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,9 +203,11 @@ class PokemonInformation extends ConsumerWidget {
                   );
                 },
                 error: (err, stack) => Text('Error: $err'),
-                loading: () => CircularProgressIndicator());
+                loading: () => Center(child: CircularProgressIndicator()));
           },
-          loading: () => CircularProgressIndicator(),
+          loading: () => Center(
+                child: CircularProgressIndicator(),
+              ),
           error: (err, stack) => Text('Error: $err')),
     );
   }

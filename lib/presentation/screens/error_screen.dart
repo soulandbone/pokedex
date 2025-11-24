@@ -41,7 +41,6 @@ class ErrorScreen extends ConsumerWidget {
                 backgroundColor: Colors.blue,
               ),
               onPressed: () {
-                print('Button pressed');
                 ref.refresh(fetchPokemonFullProvider(offSet: 0, limit: 125));
               },
               child: Text(AppStrings.kReintentar),

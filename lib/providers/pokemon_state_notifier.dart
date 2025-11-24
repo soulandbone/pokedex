@@ -38,14 +38,13 @@ class PokemonStateNotifier extends _$PokemonStateNotifier {
       final pokemons = await ref
           .read(FetchPokemonFullProvider(offSet: offset, limit: limit).future);
 
-      // print("Fetched ${pokemons.length} pokemons");
       if (offset == 0) {
         setPokemonList(pokemons);
       } else {
         addPokemons(pokemons);
       }
     } catch (e) {
-      print('error is  ${e.toString()}');
+      //print('error is  ${e.toString()}');
       state = PokemonError(e.toString());
     } finally {
       if (offset > 0) {
