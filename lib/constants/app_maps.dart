@@ -15,7 +15,8 @@ class AppMaps {
     'grass': Image.asset(
       'assets/small_icons/planta.png',
       fit: fitSmall,
-    ), // example icon
+    ),
+    // example icon
     'bug': Image.asset(
       'assets/small_icons/bicho.png',
       fit: fitSmall,
@@ -91,7 +92,9 @@ class AppMaps {
   static Map<String, Widget> typeIconMapLarge = {
     'grass': Image.asset(
       'assets/large_icons/grass.png',
-    ), // example icon
+      color: Colors.white.withAlpha(120),
+    ),
+    // example icon
     'bug': Image.asset(
       'assets/large_icons/bug.png',
     ),
@@ -262,5 +265,42 @@ class AppMaps {
     )
 
     // more icons
+  };
+
+  static Map<String, String> imageStringUrl = {
+    'grass': 'assets/large_icons/grass.png',
+
+    // example icon
+    'bug': 'assets/large_icons/bug.png',
+    'normal': 'assets/large_icons/normal.png',
+    'flying': 'assets/large_icons/flying.png',
+
+    'poison': 'assets/large_icons/poison.png',
+
+    'fire': 'assets/large_icons/fire.png',
+
+    'water': 'assets/large_icons/water.png',
+
+    'electric': 'assets/large_icons/electric.png',
+
+    'ground': 'assets/large_icons/ground.png',
+
+    'fairy': 'assets/large_icons/fairy.png',
+
+    'fighting': 'assets/large_icons/fighting.png',
+
+    'psychic': 'assets/large_icons/psychic.png',
+
+    'rock': 'assets/large_icons/rock.png',
+
+    'steel': 'assets/large_icons/steel.png',
+
+    'ice': 'assets/large_icons/ice.png',
+
+    'ghost': 'assets/large_icons/ghost.png',
+
+    'dragon': 'assets/large_icons/dragon.png',
+
+    'dark': 'assets/large_icons/dark.png',
   };
 }

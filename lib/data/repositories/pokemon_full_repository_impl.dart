@@ -21,7 +21,7 @@ class PokemonFullRepositoryImpl implements PokemonFullRepository {
       final name = result['name'] as String;
       final jsonData = await detailsApiClient.fetchPokemonTileData(url);
 
-      print('jsonData is $jsonData');
+      //print('jsonData is $jsonData');
 
       return PokemonFull.fromJson({
         //...jsonData,

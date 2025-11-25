@@ -6,6 +6,7 @@ import 'package:pokedex/domain/entities/pokemon_full/pokemon_full.dart';
 import 'package:pokedex/helpers/capitalizer.dart';
 import 'package:pokedex/helpers/number_formatter.dart';
 import 'package:pokedex/helpers/string_to_icon_mapper.dart';
+import 'package:pokedex/presentation/widgets/image_gradient.dart';
 import 'package:pokedex/presentation/widgets/pokemon_information.dart';
 import 'package:pokedex/providers/favorites.dart';
 
@@ -87,7 +88,10 @@ class PokemonTile extends ConsumerWidget {
                 ),
                 child: Stack(
                   children: [
-                    Center(child: AppMaps.typeIconMapLarge[pokemon.types[0]]!),
+                    Center(
+                        child: ImageGradient(AppMaps.imageStringUrl[pokemon
+                                .types[
+                            0]]!)), //AppMaps.typeIconMapLarge[pokemon.types[0]]!
                     Center(
                         child: Image.network(
                       pokemon.spriteUrl,
