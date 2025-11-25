@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/presentation/screens/details_error.dart';
 import 'package:pokedex/presentation/screens/home_page.dart';
 
 void main() {

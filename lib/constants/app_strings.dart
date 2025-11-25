@@ -31,6 +31,11 @@ class AppStrings {
   static const kNoHayPokemonesConCriterioDeBusq =
       'No hay pokémones con este criterio de búsqueda';
 
+  static const kMuyProntoDisponible = 'Muy pronto disponible!';
+
+  static const kEstamosTrabajando =
+      'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades';
+
 //***************************TIPOS*********************************** */
   static const kAcero = 'Acero';
   static const kAgua = 'Agua';
