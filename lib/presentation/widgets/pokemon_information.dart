@@ -14,6 +14,7 @@ import 'package:pokedex/presentation/screens/details_error.dart';
 import 'package:pokedex/presentation/widgets/colored_line.dart';
 
 import 'package:pokedex/presentation/widgets/custom_top_background.dart';
+import 'package:pokedex/presentation/widgets/image_gradient.dart';
 import 'package:pokedex/presentation/widgets/label_value.dart';
 import 'package:pokedex/presentation/widgets/weaknesses_grid.dart';
 import 'package:pokedex/providers/favorites.dart';
@@ -42,11 +43,11 @@ class PokemonInformation extends ConsumerWidget {
       appBar: AppBar(title: Text(capitalizer(pokemonInfo.name))),
       body: speciesInfoAsync.when(
         data: (speciesInfoData) {
-          print('speciesInfoData is $speciesInfoData');
+          //     print('speciesInfoData is $speciesInfoData');
 
           return typeInfoAsync.when(
             data: (typeInfoData) {
-              print('Type info Data is $typeInfoData');
+              //   print('Type info Data is $typeInfoData');
               return SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,8 +66,8 @@ class PokemonInformation extends ConsumerWidget {
                             ),
                           ),
                           Center(
-                            child: (AppMaps
-                                .typeIconMapLarge[pokemonInfo.types[0]]),
+                            child: ImageGradient(AppMaps
+                                .largeImageStringUrl[pokemonInfo.types[0]]!),
                           ),
                           Positioned(
                             bottom: 0,

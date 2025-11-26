@@ -303,4 +303,25 @@ class AppMaps {
 
     'dark': 'assets/large_icons/dark.png',
   };
+
+  static Map<String, String> largeImageStringUrl = {
+    'grass': 'assets/large_icons/grass.png',
+    'bug': 'assets/large_icons/bug.png',
+    'normal': 'assets/large_icons/normal.png',
+    'flying': 'assets/large_icons/flying.png',
+    'poison': 'assets/large_icons/poison.png',
+    'fire': 'assets/large_icons/fire.png',
+    'water': 'assets/large_icons/water.png',
+    'electric': 'assets/large_icons/electric.png',
+    'ground': 'assets/large_icons/ground.png',
+    'fairy': 'assets/large_icons/fairy.png',
+    'fighting': 'assets/large_icons/fighting.png',
+    'psychic': 'assets/large_icons/psychic.png',
+    'rock': 'assets/large_icons/rock.png',
+    'steel': 'assets/large_icons/steel.png',
+    'ice': 'assets/large_icons/ice.png',
+    'ghost': 'assets/large_icons/ghost.png',
+    'dragon': 'assets/large_icons/dragon.png',
+    'dark': 'assets/large_icons/dark.png',
+  };
 }

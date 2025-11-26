@@ -12,7 +12,7 @@ class ImageGradient extends StatelessWidget {
         return LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.white.withAlpha(255), Colors.white.withAlpha(60)],
+          colors: [Colors.white.withAlpha(255), Colors.white.withAlpha(30)],
         ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
       },
       blendMode: BlendMode.srcIn,

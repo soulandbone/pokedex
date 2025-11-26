@@ -24,7 +24,7 @@ class _PokedexState extends ConsumerState<Pokedex> {
   final TextEditingController _textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   int pokemonOffset = 125;
-  bool isLoadingMore = false;
+  // bool isLoadingMore = false;
 
   @override
   void initState() {
@@ -80,6 +80,8 @@ class _PokedexState extends ConsumerState<Pokedex> {
         .where((entry) => entry.value)
         .map((entry) => entry.key)
         .toList();
+
+    print('activeIndices are $activeIndices');
 
     final activeTypes =
         activeIndices.map((index) => AppLists.typesOfPokemon[index]).toList();
