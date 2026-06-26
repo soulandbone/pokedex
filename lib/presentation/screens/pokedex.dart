@@ -23,7 +23,7 @@ class Pokedex extends ConsumerStatefulWidget {
 class _PokedexState extends ConsumerState<Pokedex> {
   final TextEditingController _textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  int pokemonOffset = 125;
+  int pokemonOffset = 20;
   // bool isLoadingMore = false;
 
   @override
@@ -56,7 +56,7 @@ class _PokedexState extends ConsumerState<Pokedex> {
       if (!ref.read(pokemonStateNotifierProvider.notifier).isLoadingMore) {
         ref.read(pokemonStateNotifierProvider.notifier).loadPokemons(
               offset: pokemonOffset,
-              limit: 125,
+              limit: 25,
             );
         setState(() {
           pokemonOffset += 125; //we update the value of the offset variable
